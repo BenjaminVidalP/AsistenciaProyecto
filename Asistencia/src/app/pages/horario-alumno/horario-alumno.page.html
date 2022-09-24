@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar color="warning">
+    <ion-title>Horario</ion-title>
+    <ion-buttons slot="start" class="conteiner--btn">
+      <ion-menu-button color="dark"></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="start">
+      <ion-back-button color="dark"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+  <ion-toolbar color="warning">
+    <ion-segment value="diaLunes" (ionChange)="segmentChanged($event)">
+      <ion-segment-button value="diaLunes">L
+        <ion-icon name="calendar-outline"></ion-icon>
+      </ion-segment-button>
+
+      <ion-segment-button value="diaMartes">M
+        <ion-icon name="calendar-outline"></ion-icon>
+      </ion-segment-button>
+
+      <ion-segment-button value="diaMiercoles">M
+        <ion-icon name="calendar-outline"></ion-icon>
+      </ion-segment-button>
+
+      <ion-segment-button value="diaJueves">J
+        <ion-icon name="calendar-outline"></ion-icon>
+      </ion-segment-button>
+
+      <ion-segment-button value="diaViernes">V
+        <ion-icon name="calendar-outline"></ion-icon>
+      </ion-segment-button>
+      
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-router-outlet></ion-router-outlet>
+</ion-content>

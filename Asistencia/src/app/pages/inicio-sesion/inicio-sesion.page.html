@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar color="warning">
+    <ion-title>Iniciar Sesion</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" >
+  <div>
+    <img src="/assets/icon/uni2.png" alt="">
+  </div>
+
+
+  <form #formulario="ngForm" (ngSubmit)="onSubmitTemplate()">
+    <ion-list>
+      <ion-item class="item--ancho">
+        <ion-label class="label--color" position="floating" >Email</ion-label>
+      <ion-input class="input--color" type="email" name="email" pattern="^([a-zA-Z0-9_\-\.]+)@([A-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" [(ngModel)]="usuario.email" 
+        required ></ion-input>
+      </ion-item>
+
+      <ion-item class="item--ancho" appearance="fill">
+        <ion-label class="label--color" position="floating" class="label--color">Contraseña</ion-label>
+        <div class="icono--a">
+        <ion-input class="input--color" type="password" name="password" pattern=".{4,10}" [(ngModel)]="usuario.password" 
+        required matInput [type]="hide ? 'password' : 'text'"></ion-input><button class="icono--a" (click)="hide = !hide" [attr.aria-label]=" 'Hide password' " [attr.aria-pressed]="hide">
+          <ion-icon class="icono--tamano" name="eye-outline">{{hide ? 'visibility_off' : 'visibility'}}</ion-icon>
+        </button>
+        </div>
+      </ion-item>
+    </ion-list>
+<ion-row>
+  <ion-col>
+    <ion-button expand="block" type="submit" color="warning"
+    [disabled]="formulario.invalid" color="warning" [routerLink]="['/perfil-alumno']">Enviar</ion-button>
+    <div class="texto--link">
+    <a class="a--blanco" [routerLink]="['/recuperar-contra']" >Ha olvidado su contraseña?</a>
+    </div>
+  </ion-col>
+</ion-row>
+</form>
+
+
+
+</ion-content>

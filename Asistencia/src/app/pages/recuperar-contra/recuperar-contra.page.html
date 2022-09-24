@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar color="warning"><ion-title>Recuperación</ion-title> 
+    <ion-buttons slot="start">
+    <ion-back-button color="dark"></ion-back-button>
+  </ion-buttons></ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-content class="ion-padding" >
+    <div>
+      <img src="/assets/icon/uni2.png" alt="">
+    </div>
+  <form>
+    <ion-item lines="full">
+      <ion-label class="label-color" position="floating">Email</ion-label>
+      <ion-input  class="input-color" type="email"  pattern="^([a-zA-Z0-9_\-\.]+)@([A-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" required></ion-input>
+    </ion-item>
+    <ion-row>
+      <ion-col>
+        <ion-button class="letras--boton" color="warning" expand="block"  (click)="presentAlert()">Enviar correo de recuperación</ion-button>
+      </ion-col>
+    </ion-row>
+    
+      <p class="recuFont">Porfavor introduzca su correo.</p>
+
+  </form>
+</ion-content>

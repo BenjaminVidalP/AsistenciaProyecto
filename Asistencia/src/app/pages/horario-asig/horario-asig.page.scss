@@ -1,0 +1,44 @@
+.tabla{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    max-width: 320px;
+    max-height: 249px;
+    margin-top: 50px;
+
+}
+
+th:nth-child(even){
+    padding: 1px;
+    border: solid 1px  black
+}
+tr:hover td{
+    background-color: #4949c5;
+}
+table{
+    background: white;
+    border-collapse: collapse;
+    text-align: center;
+    width: 95%;
+}
+tr, td{
+    border: solid 1px  black;
+    padding: 5px;
+    font-size: 11px;
+
+}
+thead{
+    background-color: #ffde59 !important;
+    color: #000;
+    border-bottom: solid 4px black;
+}
+
+.centrado--texto{
+    text-align: center;
+}
+
+.tamano{
+    font-size: 10px;
+    padding: 2px !important;
+    width: 100%;
+}

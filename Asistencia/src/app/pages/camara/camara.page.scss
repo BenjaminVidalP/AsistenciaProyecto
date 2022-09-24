@@ -1,0 +1,81 @@
+#container {
+    text-align: center;
+  
+    position: relative;
+    left: 0;
+    right: 0;
+    top: 40%;
+    transform: translateY(-50%);
+  }
+  
+  #container strong {
+    font-size: 20px;
+    line-height: 26px;
+  }
+  
+  #container p {
+    font-size: 16px;
+    line-height: 22px;
+  
+    color: #8c8c8c;
+  
+    margin: 0;
+  }
+  
+  #container a {
+    text-decoration: none;
+  }
+  
+  .recuadros-login{
+    height: 10vh;
+    width: 100%;
+    max-width: 200px;
+    background: #791f1b;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    position: relative ;
+    margin: auto;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .trasparente{
+    background: rgba(255, 255, 255, 0.443);
+  }
+  
+  .underline{
+      text-decoration: underline;
+      color: #fff;
+  }
+  
+  .botton{
+    height: 10vh;
+    width: 100%;
+    max-width: 200px;
+    color: #fff;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    position: relative ;
+    margin: auto;
+    margin-bottom: 10px;
+  }
+  
+  .letras{
+    color: #fff;
+  }
+  
+  .labels{
+    text-align: left;
+  }
+  
+  .labels::after{
+    text-align: left;
+  }
+
+  .icono{
+    padding: 5px;
+    margin-bottom: 4px;
+  }
+

@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar color="warning">
+    <ion-title>
+      Tecno - Nacional
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="auth-form">
+  <div>
+    <img src="/assets/icon/uni2.png" alt="">
+  </div>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col align-self-center>
+        <ion-button  [routerLink]="['/registro']" expand="block" color="warning">Registrarse</ion-button>
+
+        <span class="divider line one-line">O</span>
+
+        <span class="already">¿Tienes usuario?</span>
+
+        <ion-button [routerLink]="['/inicio-sesion']" expand="block" color="warning">Iniciar Sesión</ion-button>
+        <ion-button [routerLink]="['/perfil-profesor']" expand="block" color="warning">PerfilProfesor</ion-button>
+        
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+</ion-content>

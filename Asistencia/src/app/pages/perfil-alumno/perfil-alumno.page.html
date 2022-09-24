@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar color="warning">
+    <ion-title>Alumno</ion-title>
+    <ion-buttons slot="start" class="conteiner--btn">
+      <ion-menu-button color="dark"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="contenido--container">
+    
+
+    <div class="usuario--container">
+      <div class="primer--container">
+        <ion-label class="bienvenido">Benjamin Vidal</ion-label>
+        <ion-label class="nombre">Ingeneria en informatica</ion-label>
+      </div>
+      <div class="usuario--volver" [style.backgroundImage]="'url(assets/icon/aasss.webp)'"></div>
+    </div>
+
+    <div class="contenido--div animated bounceInUp">
+      <ion-label class="hola--label">Opciones</ion-label>
+
+      <ion-grid fixed>
+        <ion-row>
+          <ion-col size="6" [routerLink]="['/camara']">
+            <div class="col--div">
+              <img src="assets/qr-scanner.jpg">
+              <ion-label>Escanear QR</ion-label>
+            </div>
+          </ion-col>
+          <ion-col size="6" [routerLink]="['/asistencia-alumno']">
+            <div class="col--div">
+              <img src="assets/asistencia.webp">
+              <ion-label>Asistencia</ion-label>
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="6" [routerLink]="['/asignaturas-alumno']">
+            <div class="col--div">
+              <img src="assets/asignaturas.png">
+              <ion-label>Asignaturas</ion-label>
+            </div>
+          </ion-col>
+          <ion-col size="6" [routerLink]="['/horario-alumno']">
+            <div class="col--div">
+              <img src="assets/horario-1.png">
+              <ion-label>Horario</ion-label>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div>
+</ion-content>
