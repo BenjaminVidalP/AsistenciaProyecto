@@ -22,7 +22,7 @@
       </ion-item>
 
       <ion-item class="item--ancho" appearance="fill">
-        <ion-label class="label--color" position="floating" class="label--color">Contraseña</ion-label>
+        <ion-label class="label--color" position="floating">Contraseña</ion-label>
         <div class="icono--a">
         <ion-input class="input--color" type="password" name="password" pattern=".{4,10}" [(ngModel)]="usuario.password" 
         required matInput [type]="hide ? 'password' : 'text'"></ion-input><button class="icono--a" (click)="hide = !hide" [attr.aria-label]=" 'Hide password' " [attr.aria-pressed]="hide">
