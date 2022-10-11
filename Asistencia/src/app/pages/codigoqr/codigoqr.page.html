@@ -1,22 +1,32 @@
-<ion-header>
-  <ion-toolbar color="warning">
-    <ion-title>Codigo QR</ion-title>
-    <ion-buttons slot="start" class="conteiner--btn">
-      <ion-menu-button color="dark"></ion-menu-button>
-    </ion-buttons>
-    <ion-buttons slot="end">
-      <ion-back-button color="dark"></ion-back-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
 
-<ion-content>
-  <ion-content class="ion-padding">
-    <div class="centrado--caja--texto">
-      <p class="letras">¡Escanear el QR para asistir!</p>
-    </div>
-    <div class="centrado--qr">
-      <img src="assets/QRprobando.png" >
-    </div>
-  </ion-content>
+  <ion-header >
+    <ion-toolbar color="warning">
+      <ion-title>Escanear</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+<ion-content [style.visibility]="content_visibility">
+
+  <ion-card class="ion-text-center" color="warning">
+    <ion-card-content>
+      <qrcode 
+        [qrdata]="qrCodeString" 
+        [width]="200" 
+        [errorCorrectionLevel]="'M'">
+      </qrcode>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-button
+    expand="block"
+    class="ion-margin" 
+    (click)="startScan()">
+    Scan QR Code
+  </ion-button>
+
+  <ion-item *ngIf="scannedResult">
+    <ion-label
+    class="ion-text-wrap">Scanned Result: {{ scannedResult }}</ion-label>
+  </ion-item>
+
 </ion-content>

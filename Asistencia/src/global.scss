@@ -33,3 +33,8 @@
     --ion-color-base-shade: var(--ion-color-white-shade);
     --ion-color-base-tint: var(--ion-color-white-tint);
 }
+
+body.scanner-active {
+    --background: transparent;
+    --ion-background-color: transparent;
+    }
