@@ -12,36 +12,36 @@
     <img src="/assets/icon/uni2.png" alt="">
   </div>
 
+  <ion-item>
+    <ion-label for="modelFormControl">Correo:</ion-label>
+    <ion-input placeholder="Email" [formControl]="email"></ion-input>
+  </ion-item>
 
-  <form #formulario="ngForm" (ngSubmit)="onSubmitTemplate()">
-    <ion-list>
-      <ion-item class="item--ancho">
-        <ion-label class="label--color" position="floating" >Email</ion-label>
-      <ion-input class="input--color" type="email" name="email" pattern="^([a-zA-Z0-9_\-\.]+)@([A-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" [(ngModel)]="usuario.email" 
-        required ></ion-input>
-      </ion-item>
+  <div  *ngIf="!email.valid && email.touched">
+    <p *ngIf="email.errors?.required">*No es valido porque es requerido</p>
+    <p *ngIf="email.errors?.minlength">*Minimo tiene que ser de 9 caracteres</p>
+    <p *ngIf="email.errors?.maxlength">*Maximo tiene que tener 25 caracteres </p>
+    
+  
+  </div>
 
-      <ion-item class="item--ancho" appearance="fill">
-        <ion-label class="label--color" position="floating">Contraseña</ion-label>
-        <div class="icono--a">
-        <ion-input class="input--color" type="password" name="password" pattern=".{4,10}" [(ngModel)]="usuario.password" 
-        required matInput [type]="hide ? 'password' : 'text'"></ion-input><button class="icono--a" (click)="hide = !hide" [attr.aria-label]=" 'Hide password' " [attr.aria-pressed]="hide">
-          <ion-icon class="icono--tamano" name="eye-outline">{{hide ? 'visibility_off' : 'visibility'}}</ion-icon>
-        </button>
-        </div>
-      </ion-item>
-    </ion-list>
-<ion-row>
-  <ion-col>
-    <ion-button expand="block" type="submit" color="warning"
-    [disabled]="formulario.invalid" color="warning" [routerLink]="['/perfil-alumno']">Enviar</ion-button>
-    <div class="texto--link">
-    <a class="a--blanco" [routerLink]="['/recuperar-contra']" >Ha olvidado su contraseña?</a>
-    </div>
-  </ion-col>
-</ion-row>
-</form>
 
+  <ion-item>
+    <ion-label for="modelFormControl">Contraseña:</ion-label>
+    <ion-input placeholder="Clave" [formControl]="password"></ion-input>
+  </ion-item>
+
+  <div *ngIf="!password.valid && password.touched">
+    <p *ngIf="password.errors?.required">*No es valido porque es requerido</p>
+    <p *ngIf="password.errors?.minlength">*Contraseña invalida</p>
+    <p *ngIf="password.errors?.maxlength">*Contraseña es solo hasta 8 caracteres</p>
+    
+  </div>
+
+  <ion-button expand="block" color="warning" [disabled]="!email.valid">Ingresar</ion-button>
+
+
+  
 
 
 </ion-content>

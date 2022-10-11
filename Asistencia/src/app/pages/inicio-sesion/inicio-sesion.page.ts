@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 import { MenuController } from '@ionic/angular';
 
 @Component({
@@ -6,14 +7,20 @@ import { MenuController } from '@ionic/angular';
   templateUrl: './inicio-sesion.page.html',
   styleUrls: ['./inicio-sesion.page.scss'],
 })
-export class InicioSesionPage implements OnInit {
-  hide = true;
-nombre: string;
+export class InicioSesionPage {
 
-usuario={
-  email:'',
-  password:''
-};
+  email:FormControl = new FormControl('',[Validators.required,
+    Validators.minLength(9),
+    Validators.maxLength(25),
+    Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')]);
+  
+  password:FormControl = new FormControl('',[Validators.required,
+    Validators.minLength(5),
+    Validators.maxLength(8),
+  ]);
+ 
+
+
 
 
 
@@ -21,12 +28,8 @@ usuario={
     this.menu.enable(false);
   }
 
-  ngOnInit() {
-  }
+  
 
-  onSubmitTemplate(){
-    console.log('Form submit')
-    console.log(this.usuario);
-  }
+  
 
 }
