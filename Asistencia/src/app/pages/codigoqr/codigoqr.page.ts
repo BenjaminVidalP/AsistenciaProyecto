@@ -10,7 +10,7 @@ import { MenuController } from '@ionic/angular';
 })
 export class CodigoqrPage implements OnInit, OnDestroy {
 
-  qrCodeString = 'This is a secret qr code message';
+  qrCodeString = 'Usted esta asistente';
   scannedResult: any;
   content_visibility = 'hidden';
 
