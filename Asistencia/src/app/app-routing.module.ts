@@ -67,6 +67,10 @@ const routes: Routes = [
     path: 'editarperfil-a',
     loadChildren: () => import('./pages/editarperfil-a/editarperfil-a.module').then( m => m.EditarperfilAPageModule)
   },
+  {
+    path: 'pruebacam',
+    loadChildren: () => import('./pages/pruebacam/pruebacam.module').then( m => m.PruebacamPageModule)
+  },
 
   
   
