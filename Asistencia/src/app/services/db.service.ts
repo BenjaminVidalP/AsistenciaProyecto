@@ -9,7 +9,7 @@ import { Users } from './users';
 })
 export class DbService {
   //variable para la sentencia de creacion de tablas
-  User: string = "CREATE TABLE IF NOT EXISTS Users(id INTEGER PRIMARY KEY autoincrement, nombre VARCHAR(30) NOT NULL, clave VARCHAR(9) NOT NULL);";
+  User: string = "CREATE TABLE IF NOT EXISTS Users(id INTEGER PRIMARY KEY autoincrement, nombre VARCHAR(30) NOT NULL, clave VARCHAR(9) NOT NULL, id_rol BOOLEAN NOT NULL);";
   //variable para el insert de la tabla
 
 

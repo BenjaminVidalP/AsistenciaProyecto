@@ -36,8 +36,8 @@ export class InicioSesionPage implements OnInit {
   ngOnInit() {
     this.api.getPosts().subscribe((user2)=>{
     
-      for(let Users of user2)
-      console.log(user2)
+      for(var datos = 0; datos < user2.length; datos++)
+      this.servicio.insertar(this.user[datos]id)
   
 
       },(error)=>{
