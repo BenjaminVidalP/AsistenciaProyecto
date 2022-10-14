@@ -55,14 +55,21 @@ const routes: Routes = [
   {
     path: 'recuperar-contra',
     loadChildren: () => import('./pages/recuperar-contra/recuperar-contra.module').then( m => m.RecuperarContraPageModule)
-  },  {
+  },
+  {
     path: 'seccion',
     loadChildren: () => import('./pages/seccion/seccion.module').then( m => m.SeccionPageModule)
   },
   {
     path: 'horario-asig',
     loadChildren: () => import('./pages/horario-asig/horario-asig.module').then( m => m.HorarioAsigPageModule)
+  },  {
+    path: 'editarperfil-a',
+    loadChildren: () => import('./pages/editarperfil-a/editarperfil-a.module').then( m => m.EditarperfilAPageModule)
   },
+
+  
+  
 
 
 
