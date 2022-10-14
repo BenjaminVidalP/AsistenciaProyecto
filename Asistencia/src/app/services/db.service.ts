@@ -9,7 +9,7 @@ import { Users } from './users';
 })
 export class DbService {
   //variable para la sentencia de creacion de tablas
-  User: string = "CREATE TABLE IF NOT EXISTS Users(id INTEGER PRIMARY KEY autoincrement, nombre VARCHAR(30) NOT NULL, clave VARCHAR(9) NOT NULL, id_rol BOOLEAN NOT NULL);";
+  User: string = "CREATE TABLE IF NOT EXISTS Users(id INTEGER PRIMARY KEY autoincrement, nombre VARCHAR(30) NOT NULL, clave VARCHAR(9) NOT NULL, id_rol NUMBER NOT NULL);";
   //variable para el insert de la tabla
 
 
@@ -74,8 +74,8 @@ export class DbService {
     return this.listaUsers.asObservable();
   }
 
-  insertar(id,nombre,clave,rol){
-    let data=[id,nombre,clave,rol];
+  insertar(id,nombre,clave,id_rol){
+    let data=[id,nombre,clave,id_rol];
     this.database.executeSql('INSERT INTO Users VALUES(id,nombre,clave,id_rol) values (?,?,?,?)',data).then(() =>{
       console.log("Insert ejecutado")
     }).catch( e => console.log(e) ); 
