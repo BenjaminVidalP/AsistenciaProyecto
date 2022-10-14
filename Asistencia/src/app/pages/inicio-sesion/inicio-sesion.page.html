@@ -14,7 +14,7 @@
 
   <ion-item>
     <ion-label for="modelFormControl">Nombre:</ion-label>
-    <ion-input placeholder="Email" [formControl]="email" > {{}} </ion-input>
+    <ion-input placeholder="Email" [formControl]="email" > {{user.nombre}} </ion-input>
   </ion-item>
 
   <div  *ngIf="!email.valid && email.touched">
@@ -28,7 +28,7 @@
 
   <ion-item>
     <ion-label for="modelFormControl">Contraseña:</ion-label>
-    <ion-input placeholder="Clave" [formControl]="password"></ion-input>
+    <ion-input placeholder="clave" [formControl]="password"> {{user.clave}} </ion-input>
   </ion-item>
 
   <div *ngIf="!password.valid && password.touched">
