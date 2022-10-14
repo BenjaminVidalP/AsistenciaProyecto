@@ -13,8 +13,8 @@
   </div>
 
   <ion-item>
-    <ion-label for="modelFormControl">Correo:</ion-label>
-    <ion-input placeholder="Email" [formControl]="email"></ion-input>
+    <ion-label for="modelFormControl">Nombre:</ion-label>
+    <ion-input placeholder="Email" [formControl]="email" *ngFor="let User of Users" [value]="niv.id"> {{User.nombre}} </ion-input>
   </ion-item>
 
   <div  *ngIf="!email.valid && email.touched">
