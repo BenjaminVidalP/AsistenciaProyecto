@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MenuController } from '@ionic/angular';
 import { ApiService, User } from 'src/app/services/api.service';
+import { DbService } from 'src/app/services/db.service';
+import { Users } from 'src/app/services/users';
 
 
 
@@ -12,12 +14,14 @@ import { ApiService, User } from 'src/app/services/api.service';
 })
 
 
+
 export class InicioSesionPage implements OnInit { 
-  constructor(private menu: MenuController, private api: ApiService ) {
+  constructor(private menu: MenuController, private api: ApiService, private servicio: DbService) { 
     this.menu.enable(false);
-  
+    
   }
 
+  user: any;
 
   email:FormControl = new FormControl('',[Validators.required,
     Validators.minLength(9),
@@ -30,8 +34,12 @@ export class InicioSesionPage implements OnInit {
   ]);
 
   ngOnInit() {
-    this.api.getPosts().subscribe((res)=>{
-      console.log(res[0]);
+    this.api.getPosts().subscribe((user2)=>{
+    
+      for(let Users of user2)
+      console.log(user2)
+  
+
       },(error)=>{
       console.log(error);
       });

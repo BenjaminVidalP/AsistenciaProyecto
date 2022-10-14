@@ -9,9 +9,9 @@ import { Users } from './users';
 })
 export class DbService {
   //variable para la sentencia de creacion de tablas
-  User: string = "CREATE TABLE IF NOT EXISTS Users(id INTEGER PRIMARY KEY autoincrement, correo VARCHAR(30) NOT NULL, clave VARCHAR(9) NOT NULL);";
+  User: string = "CREATE TABLE IF NOT EXISTS Users(id INTEGER PRIMARY KEY autoincrement, nombre VARCHAR(30) NOT NULL, clave VARCHAR(9) NOT NULL);";
   //variable para el insert de la tabla
-  registroUser: string = "INSERT or IGNORE INTO Users(id, correo, clave) VALUES (1, 'man.collao@duocuc.cl', '12345678');";
+
 
   //variable que manipule la conexion a BD
   public database: SQLiteObject;
@@ -58,8 +58,6 @@ export class DbService {
       //ejecuto creacion de tablas
       await this.database.executeSql(this.User, []);
 
-      //ejecuto los insert
-      await this.database.executeSql(this.registroUser, []);
       //modificar el observable de el status de la BD
       this.isDBReady.next(true);
 
@@ -76,5 +74,12 @@ export class DbService {
     return this.listaUsers.asObservable();
   }
 
+  insertar(id,nombre,clave,rol){
+    let data=[id,nombre,clave,rol];
+    this.database.executeSql('INSERT INTO Users VALUES(id,nombre,clave,id_rol) values (?,?,?,?)',data).then(() =>{
+      console.log("Insert ejecutado")
+    }).catch( e => console.log(e) ); 
+  }
   
 }
+

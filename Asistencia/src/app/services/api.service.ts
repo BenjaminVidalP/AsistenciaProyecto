@@ -21,18 +21,15 @@ export class ApiService {
     })
   }
   // Se establece la base url del API a consumir
-  apiURL = 'https://my-json-server.typicode.com/victorrosendo/repoUsuariosRamos/db';
+  apiURL = 'https://my-json-server.typicode.com/victorrosendo/repoUsuariosRamos';
   // Se declara la variable http de tipo HttpClient
     constructor(private http:HttpClient) { }
 
 getPosts():Observable<any>{
-    return this.http.get(this.apiURL+'/posts/').pipe(
+    return this.http.get(this.apiURL+'/users/').pipe(
         retry(3), catchError(this.handleError)
     );
   }
-
-
-
 
 
   private handleError(error: HttpErrorResponse) {
