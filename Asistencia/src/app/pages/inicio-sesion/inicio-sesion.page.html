@@ -14,13 +14,13 @@
 
   <ion-item>
     <ion-label for="modelFormControl">Nombre:</ion-label>
-    <ion-input placeholder="Email" [formControl]="email" > {{user.nombre}} </ion-input>
+    <ion-input placeholder="nombre" [formControl]="nombre" > </ion-input>
   </ion-item>
 
-  <div  *ngIf="!email.valid && email.touched">
-    <p *ngIf="email.errors?.required">*No es valido porque es requerido</p>
-    <p *ngIf="email.errors?.minlength">*Minimo tiene que ser de 9 caracteres</p>
-    <p *ngIf="email.errors?.maxlength">*Maximo tiene que tener 25 caracteres </p>
+  <div  *ngIf="!nombre.valid && nombre.touched">
+    <p *ngIf="nombre.errors?.required">*No es valido porque es requerido</p>
+    <p *ngIf="nombre.errors?.minlength">*Minimo tiene que ser de 4 caracteres</p>
+    <p *ngIf="nombre.errors?.maxlength">*Maximo tiene que tener 10 caracteres </p>
     
   
   </div>
@@ -28,17 +28,17 @@
 
   <ion-item>
     <ion-label for="modelFormControl">Contraseña:</ion-label>
-    <ion-input placeholder="clave" [formControl]="password"> {{user.clave}} </ion-input>
+    <ion-input placeholder="clave" [formControl]="clave"></ion-input>
   </ion-item>
 
-  <div *ngIf="!password.valid && password.touched">
-    <p *ngIf="password.errors?.required">*No es valido porque es requerido</p>
-    <p *ngIf="password.errors?.minlength">*Contraseña invalida</p>
-    <p *ngIf="password.errors?.maxlength">*Contraseña es solo hasta 8 caracteres</p>
+  <div *ngIf="!clave.valid && clave.touched">
+    <p *ngIf="clave.errors?.required">*No es valido porque es requerido</p>
+    <p *ngIf="clave.errors?.minlength">*Contraseña invalida</p>
+    <p *ngIf="clave.errors?.maxlength">*Contraseña es solo hasta 8 caracteres</p>
     
   </div>
 
-  <ion-button expand="block" color="warning" [disabled]="!email.valid">Ingresar</ion-button>
+  <ion-button expand="block" color="warning" [disabled]="!nombre.valid">Ingresar</ion-button>
 
 
   

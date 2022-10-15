@@ -10,11 +10,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { QRCodeModule } from 'angularx-qrcode';
 
 import { HttpClientModule } from '@angular/common/http';
+import { SQLite } from '@awesome-cordova-plugins/sqlite/ngx';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, BrowserAnimationsModule, QRCodeModule, HttpClientModule],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, Camera],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, Camera, SQLite],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

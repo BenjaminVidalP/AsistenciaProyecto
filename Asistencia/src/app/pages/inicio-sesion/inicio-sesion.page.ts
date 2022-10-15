@@ -23,12 +23,11 @@ export class InicioSesionPage implements OnInit {
 
   user: any;
 
-  email:FormControl = new FormControl('',[Validators.required,
-    Validators.minLength(9),
-    Validators.maxLength(25),
-    Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')]);
+  nombre:FormControl = new FormControl('',[Validators.required,
+    Validators.minLength(4),
+    Validators.maxLength(10)]);
   
-  password:FormControl = new FormControl('',[Validators.required,
+  clave:FormControl = new FormControl('',[Validators.required,
     Validators.minLength(5),
     Validators.maxLength(8),
   ]);
