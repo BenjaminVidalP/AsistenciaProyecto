@@ -8,5 +8,40 @@
 </ion-header>
 
 <ion-content>
+
+  <div id="container">
+    <ion-card>
+      <img [src]="imageData" alt="foto" *ngIf="imageData">
+      <ion-button shape="block" (click)="tomarF()">Tomar foto</ion-button>
+    </ion-card>
+  </div>
+
   
+<ion-card>
+  <ion-card-content>
+    <ion-list>
+      <ion-item>
+        <ion-label position="floating">Usuario:</ion-label>
+        <ion-input></ion-input>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label position="floating">Correo:</ion-label>
+        <ion-input></ion-input>
+      </ion-item>
+  
+  
+      <ion-item>
+        <ion-label position="floating">Clave:</ion-label>
+        <ion-input></ion-input>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label position="floating">Confirmar Clave:</ion-label>
+        <ion-input></ion-input>
+      </ion-item>
+    </ion-list>
+
+  </ion-card-content>
+</ion-card>
 </ion-content>
