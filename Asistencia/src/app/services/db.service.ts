@@ -4,22 +4,29 @@ import { AlertController, Platform } from '@ionic/angular';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Users } from './users';
 import { NativeStorage } from '@awesome-cordova-plugins/native-storage/ngx';
+import { Ramos } from './ramos';
 @Injectable({
   providedIn: 'root'
 })
 export class DbService {
   //variable para la sentencia de creacion de tablas
-  User: string = "CREATE TABLE IF NOT EXISTS users(id INTEGER PRIMARY KEY autoincrement, nombre VARCHAR(30) , clave VARCHAR(30) , id_rol NUMBER );";
-  Ramos: string = "CREATE TABLE IF NOT EXISTS ramos(id INTEGER PRIMARY KEY autoincrement, sigla VARCHAR(30) , nombre VARCHAR(50), );";
-  Listado: string = "CREATE TABLE IF NOT EXISTS listado();";
-  Asigsecci: string = "CREATE TABLE IF NOT EXIST asigsecci();";
-  Seccion: string = "CREATE TABLE IF NOT EXIST seccion();";
+  Rol: string = "CREATE TABLE IF NOT EXISTS rol (id_rol INTEGER PRIMARY KEY autoincrement, nombre_rol VARCHAR(30) NULL);";
+  User: string = "CREATE TABLE IF NOT EXISTS users(id INTEGER PRIMARY KEY autoincrement, nombre VARCHAR(30) NOT NULL, clave VARCHAR(30) NOT NULL, id_rol NUMBER NOT NULL);";
+  Ramos: string = "CREATE TABLE IF NOT EXISTS ramos(id_ramo INTEGER PRIMARY KEY autoincrement, sigla VARCHAR(30) NOT NULL, nombre VARCHAR(50), NOT NULL);";
+  Seccion: string = "CREATE TABLE IF NOT EXIST seccion(id_seccion INTEGER PRIMARY KEY autoincrement, sigla VARCHAR(15) NOT NULL);";
+  Asigsecci: string = "CREATE TABLE IF NOT EXIST asigsecci(id_asigsecci INTEGER PRIMARY KEY autoincrement, id_ramo NUMBER NOT NULL, id_seccion NUMBER NOT NULL, id_profesor NOT NULL);";
+  Listado: string = "CREATE TABLE IF NOT EXISTS listado(id_listado INTEGER PRIMARY KEY autoincrement, id_estudiante NUMBER NOT NULL, id_asigsecci NUMBER NOT NULL);";
+  Asistencia: string = "CREATE TABLE IF NOT EXISTS asistencia(id_asistencia INTEGER PRIMARY KEY autoincrement, fecha DATE NOT NULL,qr VARCHAR (40) NOT NULL, hora_ini VARCHAR(10) NOT NULL, hora_fin VARCHAR (10) NOT NULL);";
+  Detalle: string = "CREATE TABLE IF NOT EXISTS detalle_asist(id_detalle INTEGER PRIMARY KEY autoincrement, estado VARCHAR (12) NOT NULL );";
+  
   //variable para el insert de la tabla
+
   //variable que manipule la conexion a BD
   public database: SQLiteObject;
 
   //variables para observables
   listaUsers = new BehaviorSubject([]);
+  listaRamos = new BehaviorSubject([])
   private isDBReady: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   constructor(private sqlite: SQLite, private platform: Platform, private alertController: AlertController,  public nativeStorage: NativeStorage) {
@@ -72,6 +79,10 @@ export class DbService {
 
   fetchUsuario(): Observable<Users[]> {
     return this.listaUsers.asObservable();
+  }
+
+  fetchRamos(): Observable<Ramos[]> {
+    return this.listaRamos.asObservable();
   }
 
 
@@ -161,6 +172,15 @@ ingreso2(nombre,clave){
       console.log("Insert ejecutado")
     }).catch( e => console.log(e) ); 
   }
+
+  regisAs(alumno,fecha,prof,sec,seccionId,userRut){
+    let data = [ alumno,fecha,prof,sec,seccionId,userRut];
+    return this.database.executeSql('INSERT INTO asistencia (alumno,fecha,prof,sec,seccionId,userRut) VALUES (?,?,?,?,?,?)', data)
+      .then(res => {
+        
+      })
+  }
+
 
   
 }

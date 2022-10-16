@@ -1,4 +1,4 @@
 export class Seccion {
-    id: number;
+    id_seccion: number;
     sigla: string;
 }

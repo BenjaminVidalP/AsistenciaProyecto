@@ -1,5 +1,5 @@
 export class Ramos {
-    id: number;
+    id_ramo: number;
     sigla: string;
     nombre: string;
 }
