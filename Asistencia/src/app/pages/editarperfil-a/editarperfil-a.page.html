@@ -11,7 +11,7 @@
 
   <div id="container">
     <ion-card>
-      <img [src]="imageData" alt="foto" *ngIf="imageData">
+      <img [src]="imageData" alt="foto" *ngIf="imageData[0]">
       <ion-button shape="block" (click)="tomarF()">Tomar foto</ion-button>
     </ion-card>
   </div>

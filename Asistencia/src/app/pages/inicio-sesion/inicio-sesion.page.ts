@@ -64,8 +64,9 @@ export class InicioSesionPage implements OnInit {
     this.api.getPosts().subscribe((user2)=>{
       
       this.user = user2;
-      for(var i = 0; i < this.user.length; i++)
-      this.servicio.insertar(this.user[i].id,this.user[i].nombre,this.user[i].clave,this.user[i].id_rol);
+      for(var i = 0; i < this.user.length; i++){
+        this.servicio.insertar(this.user[i].id,this.user[i].nombre,this.user[i].clave,this.user[i].id_rol);
+        }
       },(error)=>{
       console.log(error);
       });

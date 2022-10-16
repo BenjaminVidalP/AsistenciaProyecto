@@ -47,15 +47,13 @@ export class DbService {
       }).catch(e => {
         this.presentAlert("Error creación BD: " + e);
       })
-
-
     })
   }
   
   async crearTablas() {
     try {
       //ejecuto creacion de tablas
-      await this.database.executeSql(this.User, []);
+      await this.database.executeSql(this.User,[]);
       this.buscarUsuarios();
       //modificar el observable de el status de la BD
       this.isDBReady.next(true);
