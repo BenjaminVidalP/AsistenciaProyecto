@@ -13,28 +13,28 @@
   </div>
 
   <ion-item>
-    <ion-label for="modelFormControl">Nombre:</ion-label>
-    <ion-input placeholder="nombre" [formControl]="nombre" [(ngModel)]="luser.nombre"> </ion-input>
+    <ion-label position="floating" for="modelFormControl">Nombre:</ion-label>
+    <ion-input placeholder="Nombre de Usuario" [formControl]="nombre" [(ngModel)]="luser.nombre"> </ion-input>
   </ion-item>
 
   <div  *ngIf="!nombre.valid && nombre.touched">
-    <p *ngIf="nombre.errors?.required">*No es valido porque es requerido</p>
-    <p *ngIf="nombre.errors?.minlength">*Minimo tiene que ser de 4 caracteres</p>
-    <p *ngIf="nombre.errors?.maxlength">*Maximo tiene que tener 10 caracteres </p>
+    <ion-label color="danger" *ngIf="nombre.errors?.required">*No es valido porque es requerido</ion-label>
+    <ion-label color="danger" *ngIf="nombre.errors?.minlength">*Minimo tiene que ser de 4 caracteres</ion-label>
+    <ion-label color="danger" *ngIf="nombre.errors?.maxlength">*Maximo tiene que tener 10 caracteres </ion-label>
     
   
   </div>
 
 
   <ion-item>
-    <ion-label for="modelFormControl">Contraseña:</ion-label>
-    <ion-input placeholder="clave" [formControl]="clave" [(ngModel)]="luser.clave"></ion-input>
+    <ion-label position="floating" for="modelFormControl">Contraseña:</ion-label>
+    <ion-input placeholder="Clave de Usuario" [formControl]="clave" [(ngModel)]="luser.clave"></ion-input>
   </ion-item>
 
   <div *ngIf="!clave.valid && clave.touched">
-    <p *ngIf="clave.errors?.required">*No es valido porque es requerido</p>
-    <p *ngIf="clave.errors?.minlength">*Contraseña invalida</p>
-    <p *ngIf="clave.errors?.maxlength">*Contraseña es solo hasta 8 caracteres</p>
+    <ion-label color="danger" *ngIf="clave.errors?.required">*No es valido porque es requerido</ion-label>
+    <ion-label color="danger" *ngIf="clave.errors?.minlength">*Contraseña invalida</ion-label>
+    <ion-label color="danger" *ngIf="clave.errors?.maxlength">*Contraseña es solo hasta 8 caracteres</ion-label>
     
   </div>
 
