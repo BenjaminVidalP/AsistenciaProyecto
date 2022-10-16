@@ -4,6 +4,8 @@ import { MenuController } from '@ionic/angular';
 import { ApiService, User } from 'src/app/services/api.service';
 import { DbService } from 'src/app/services/db.service';
 import { Users } from 'src/app/services/users';
+import { NativeStorage } from '@awesome-cordova-plugins/native-storage/ngx';
+import { NavigationExtras, Router } from '@angular/router';
 
 
 
@@ -16,12 +18,17 @@ import { Users } from 'src/app/services/users';
 
 
 export class InicioSesionPage implements OnInit { 
-  constructor(private menu: MenuController, private api: ApiService, private servicio: DbService) { 
+  constructor(private menu: MenuController, private api: ApiService, private servicio: DbService, public nativeStorage: NativeStorage,private router: Router) { 
     this.menu.enable(false);
     
   }
-
+  
   user: any;
+
+  luser: any = {
+    nombre: "",
+    clave: ""
+  }
 
   nombre:FormControl = new FormControl('',[Validators.required,
     Validators.minLength(4),
@@ -32,11 +39,33 @@ export class InicioSesionPage implements OnInit {
     Validators.maxLength(8),
   ]);
 
+  LoginProf(){
+    let navigationExtras: NavigationExtras = {
+      state:{log0: this.luser.nombre, log1:this.luser.clave}
+    }
+    this.router.navigate(['/perfil-profesor'], navigationExtras)
+  }
+
+  LoginAlum(){
+    let navigationExtras: NavigationExtras = {
+      state: {log0: this.luser.nombre, log1:this.luser.clave}
+    }
+    this.router.navigate(['/perfil-alumno'], navigationExtras)
+  }
+
+  async ingresar(){
+    const response1 = await this.servicio.ingreso(this.luser.nombre, this.luser.clave)
+    response1 ? this.LoginProf(): this.servicio.presentAlert("Credenciales incorrectar Compruebe su nombre y/o clave")
+    const response2 = await this.servicio.ingreso(this.luser.nombre, this.luser.clave)
+    response2 ? this.LoginAlum(): this.servicio.presentAlert("Credenciales incorrectar Compruebe su nombre y/o clave")
+  }
+
   ngOnInit() {
     this.api.getPosts().subscribe((user2)=>{
-    
-      for(var datos = 0; datos < user2.length; datos++)
-      this.servicio.insertar(this.user[datos].id,this.user[datos].nombre,this.user[datos].clave,this.user[datos].id_rol);
+      
+      this.user = user2;
+      for(var i = 0; i < this.user.length; i++)
+      this.servicio.insertar(this.user[i].id,this.user[i].nombre,this.user[i].clave,this.user[i].id_rol);
       },(error)=>{
       console.log(error);
       });
