@@ -10,7 +10,10 @@ import { NativeStorage } from '@awesome-cordova-plugins/native-storage/ngx';
 export class DbService {
   //variable para la sentencia de creacion de tablas
   User: string = "CREATE TABLE IF NOT EXISTS users(id INTEGER PRIMARY KEY autoincrement, nombre VARCHAR(30) , clave VARCHAR(30) , id_rol NUMBER );";
-  Ramos: string = "CREATE TABLE IF NOT EXISTS ramos(id INTEGER PRIMARY KEY autoincrement, sigla VARCHAR(30) , nombre VARCHAR(50) );";
+  Ramos: string = "CREATE TABLE IF NOT EXISTS ramos(id INTEGER PRIMARY KEY autoincrement, sigla VARCHAR(30) , nombre VARCHAR(50), );";
+  Listado: string = "CREATE TABLE IF NOT EXISTS listado();";
+  Asigsecci: string = "CREATE TABLE IF NOT EXIST asigsecci();";
+  Seccion: string = "CREATE TABLE IF NOT EXIST seccion();";
   //variable para el insert de la tabla
   //variable que manipule la conexion a BD
   public database: SQLiteObject;
@@ -148,6 +151,8 @@ ingreso2(nombre,clave){
 
     })
   }
+
+
 
   insertar(id,nombre,clave,id_rol){
     let data=[id,nombre,clave,id_rol];
