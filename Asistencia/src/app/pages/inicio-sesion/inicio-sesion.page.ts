@@ -55,9 +55,9 @@ export class InicioSesionPage implements OnInit {
 
   async ingresar(){
     const response1 = await this.servicio.ingreso(this.luser.nombre, this.luser.clave)
-    response1 ? this.LoginProf(): this.servicio.presentAlert("Credenciales incorrectar Compruebe su nombre y/o clave")
-    const response2 = await this.servicio.ingreso(this.luser.nombre, this.luser.clave)
-    response2 ? this.LoginAlum(): this.servicio.presentAlert("Credenciales incorrectar Compruebe su nombre y/o clave")
+    response1 ? this.LoginProf(): this.nombre
+    const response2 = await this.servicio.ingreso2(this.luser.nombre, this.luser.clave)
+    response2 ? this.LoginAlum(): this.nombre
   }
 
   ngOnInit() {
