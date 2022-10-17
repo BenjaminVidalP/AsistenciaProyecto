@@ -17,8 +17,8 @@ export class DbService {
   Rol: string = "CREATE TABLE IF NOT EXISTS rol (id_rol INTEGER PRIMARY KEY autoincrement, nombre_rol VARCHAR(30) NULL);";
   User: string = "CREATE TABLE IF NOT EXISTS users(id INTEGER PRIMARY KEY autoincrement, nombre VARCHAR(30) NOT NULL, clave VARCHAR(30) NOT NULL, id_rol NUMBER NOT NULL);";
   Ramo: string = "CREATE TABLE IF NOT EXISTS ramos(id INTEGER PRIMARY KEY autoincrement, sigla VARCHAR(30) NOT NULL, nombre VARCHAR(50) NOT NULL);";
-  Seccion: string = "CREATE TABLE IF NOT EXIST seccion(id INTEGER PRIMARY KEY autoincrement, sigla VARCHAR(20) NOT NULL);";
-  Asigsecci: string = "CREATE TABLE IF NOT EXIST asigsecci(id INTEGER PRIMARY KEY autoincrement, id_ramo NUMBER NOT NULL, id_seccion NUMBER NOT NULL, id_profesor NUMBER NOT NULL);";
+  Seccion: string = "CREATE TABLE IF NOT EXISTS seccion(id INTEGER PRIMARY KEY autoincrement, sigla VARCHAR(20) NOT NULL);";
+  Asigsecci: string = "CREATE TABLE IF NOT EXISTS asigsecci(id INTEGER PRIMARY KEY autoincrement, id_ramo NUMBER NOT NULL, id_seccion NUMBER NOT NULL, id_profesor NUMBER NOT NULL);";
   Listado: string = "CREATE TABLE IF NOT EXISTS listado(id INTEGER PRIMARY KEY autoincrement, id_estudiante NUMBER NOT NULL, id_asigsecci NUMBER NOT NULL);";
   Asistencia: string = "CREATE TABLE IF NOT EXISTS asistencia(id_asistencia INTEGER PRIMARY KEY autoincrement, fecha DATE NOT NULL,qr VARCHAR (40) NOT NULL, hora_ini VARCHAR(10) NOT NULL, hora_fin VARCHAR (10) NOT NULL);";
   Detalle: string = "CREATE TABLE IF NOT EXISTS detalle_asist(id_detalle INTEGER PRIMARY KEY autoincrement, estado VARCHAR (12) NOT NULL );";
