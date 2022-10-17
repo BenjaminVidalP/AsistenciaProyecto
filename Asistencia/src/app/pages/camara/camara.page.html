@@ -1,26 +1,29 @@
-<ion-header>
+<ion-header [style.visibility]="content_visibility">
   <ion-toolbar color="warning">
     <ion-title>Escanear</ion-title>
-    <ion-buttons slot="start" class="conteiner--btn">
-      <ion-menu-button color="dark"></ion-menu-button>
-    </ion-buttons>
-    <ion-buttons slot="end">
-      <ion-back-button color="dark"></ion-back-button>
-    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
+<ion-content [style.visibility]="content_visibility">
 
-  <div id="container" >
+<ion-card>
+  <ion-select>Seccion</ion-select>
+</ion-card>
 
-    <h2 class="letras">¡Bienvenidos!</h2>
-    <img src="assets/icon/uni2.png">
-    <ion-button expand="block" color="warning" [routerLink]="['/registrado']">
-      <ion-icon name="camera-outline" class="icono"></ion-icon>
-      Escanear Codigo</ion-button>
+  <div id="container">
 
-    
+      <ion-button 
+      expand="block"
+      class="ion-margin" 
+      (click)="startScan()"><ion-icon name="camera-outline" class="icono"></ion-icon>
+      Scan QR Code
+    </ion-button>
+  
+    <ion-item *ngIf="scannedResult" color="warning">
+      <ion-label
+      class="ion-text-wrap">Scanned Result: {{ scannedResult }}</ion-label>
+    </ion-item>
+  
 
 </div>
 

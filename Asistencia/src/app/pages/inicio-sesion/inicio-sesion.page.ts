@@ -24,6 +24,10 @@ export class InicioSesionPage implements OnInit {
   }
   
   user: any;
+  ramo: any;
+  seccion: any;
+  asigsecci: any;
+  listado: any;
 
   luser: any = {
     nombre: "",
@@ -65,7 +69,43 @@ export class InicioSesionPage implements OnInit {
       
       this.user = user2;
       for(var i = 0; i < this.user.length; i++){
-        this.servicio.insertar(this.user[i].id,this.user[i].nombre,this.user[i].clave,this.user[i].id_rol);
+        this.servicio.insertarUsuarios(this.user[i].id,this.user[i].nombre,this.user[i].clave,this.user[i].id_rol);
+        }
+      },(error)=>{
+      console.log(error);
+      });
+    this.api.getPosts1().subscribe((ramo2)=>{
+      
+      this.ramo = ramo2;
+      for(var i = 0; i < this.ramo.length; i++){
+        this.servicio.insertarRamos(this.ramo[i].id,this.ramo[i].sigla,this.ramo[i].nombre);
+        }
+      },(error)=>{
+      console.log(error);
+      });
+    this.api.getPosts2().subscribe((seccion2)=>{
+      
+      this.seccion = seccion2;
+      for(var i = 0; i < this.seccion.length; i++){
+        this.servicio.insertarSecciones(this.seccion[i].id,this.seccion[i].sigla);
+        }
+      },(error)=>{
+      console.log(error);
+      });
+    this.api.getPosts3().subscribe((asigsecci2)=>{
+      
+      this.asigsecci = asigsecci2;
+      for(var i = 0; i < this.asigsecci.length; i++){
+        this.servicio.insertarAsignaturaSecciones(this.asigsecci[i].id,this.asigsecci[i].id_ramo,this.asigsecci[i].id_seccion,this.asigsecci[i].id_profesor);
+        }
+      },(error)=>{
+      console.log(error);
+      });
+    this.api.getPosts4().subscribe((listado2)=>{
+      
+      this.listado = listado2;
+      for(var i = 0; i < this.listado.length; i++){
+        this.servicio.insertarListados(this.listado[i].id,this.listado[i].id_estudiante,this.listado[i].id_asigsecci);
         }
       },(error)=>{
       console.log(error);
