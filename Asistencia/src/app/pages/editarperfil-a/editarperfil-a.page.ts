@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { TomarFotoService } from 'src/app/services/tomar-foto.service';
 
 @Component({
   selector: 'app-editarperfil-a',
@@ -7,16 +6,12 @@ import { TomarFotoService } from 'src/app/services/tomar-foto.service';
   styleUrls: ['./editarperfil-a.page.scss'],
 })
 export class EditarperfilAPage implements OnInit {
-  imageData: any;
-  constructor(private c: TomarFotoService) { }
-  tomarF(){
-    this.c.takePicture();
-  }
+  
+  constructor() { }
+  
 
   ngOnInit() {
-    this.c.regresarfoto().subscribe((res) => {
-      this.imageData = res;
-    })
+    
   }
 
 }

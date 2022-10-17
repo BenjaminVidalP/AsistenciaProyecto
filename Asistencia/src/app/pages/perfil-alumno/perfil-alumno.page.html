@@ -16,7 +16,14 @@
         <ion-label class="bienvenido">Benjamin Vidal</ion-label>
         <ion-label class="nombre">Ingeneria en informatica</ion-label>
       </div>
-      <div class="usuario--volver" [style.backgroundImage]="'url(assets/icon/aasss.webp)'"></div>
+      <div id="container">
+        <ion-card>
+          
+          <img  [src]="imageData" alt="foto" *ngIf="imageData[0]">
+         
+          <ion-button shape="block" (click)="tomarF()">Tomar foto</ion-button>
+        </ion-card>
+      </div>
     </div>
 
     <div class="contenido--div animated bounceInUp">
