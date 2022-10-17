@@ -2,6 +2,7 @@
   <ion-toolbar color="warning">
     <ion-title>Alumno</ion-title>
     <ion-buttons slot="start" class="conteiner--btn">
+      <ion-buttons  slot="end" (click)="tomarF()">Editar</ion-buttons>
       <ion-menu-button color="dark"></ion-menu-button>
     </ion-buttons>
   </ion-toolbar>
@@ -19,9 +20,7 @@
       <div id="container">
         <ion-card>
           
-          <img  [src]="imageData" alt="foto" *ngIf="imageData[0]">
-         
-          <ion-button shape="block" (click)="tomarF()">Tomar foto</ion-button>
+          <img class="img-perfil"  [src]="imageData" alt="foto" *ngIf="imageData[0]">
         </ion-card>
       </div>
     </div>

@@ -88,3 +88,12 @@ ion-content {
         }
     }
 }
+
+.img-perfil{
+        width: 125px;
+        height: 125px;
+        border-radius: 50%;
+        border:8px solid #ffffff;
+        align-items: center;
+        transform: rotate(-0.25turn);
+    }
