@@ -14,7 +14,7 @@
 
   <ion-item>
     <ion-label position="floating" for="modelFormControl">Nombre:</ion-label>
-    <ion-input placeholder="Nombre de Usuario" [formControl]="nombre" [(ngModel)]="luser.nombre"> </ion-input>
+    <ion-input placeholder="Nombre de Usuario" type="text" [formControl]="nombre" [(ngModel)]="luser.nombre"> </ion-input>
   </ion-item>
 
   <div  *ngIf="!nombre.valid && nombre.touched">
@@ -28,7 +28,7 @@
 
   <ion-item>
     <ion-label position="floating" for="modelFormControl">Contraseña:</ion-label>
-    <ion-input placeholder="Clave de Usuario" [formControl]="clave" [(ngModel)]="luser.clave"></ion-input>
+    <ion-input placeholder="Clave de Usuario" [formControl]="clave" type="password" [(ngModel)]="luser.clave"></ion-input>
   </ion-item>
 
   <div *ngIf="!clave.valid && clave.touched">
