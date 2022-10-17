@@ -2,9 +2,9 @@
   <ion-toolbar color="warning">
     <ion-title>Alumno</ion-title>
     <ion-buttons slot="start" class="conteiner--btn">
-      <ion-buttons  slot="end" (click)="tomarF()">Editar</ion-buttons>
       <ion-menu-button color="dark"></ion-menu-button>
     </ion-buttons>
+    <ion-buttons  slot="end" class="conteiner--btn" (click)="tomarF()">Subir imagen</ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -21,6 +21,7 @@
         <ion-card>
           
           <img class="img-perfil"  [src]="imageData" alt="foto" *ngIf="imageData[0]">
+          
         </ion-card>
       </div>
     </div>
