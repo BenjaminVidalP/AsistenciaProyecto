@@ -42,7 +42,7 @@ export class DbService {
 
   private isDBReady: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
-  constructor(private sqlite: SQLite, private platform: Platform, private alertController: AlertController,  public nativeStorage: NativeStorage) {
+  constructor(private sqlite: SQLite, private platform: Platform, private alertController: AlertController, public nativeStorage: NativeStorage) {
     this.crearBD(); 
   }
 

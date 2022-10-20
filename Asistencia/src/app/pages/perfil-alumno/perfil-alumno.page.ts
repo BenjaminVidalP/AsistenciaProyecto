@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { NativeStorage } from '@awesome-cordova-plugins/native-storage/ngx';
 import { MenuController } from '@ionic/angular';
+import { DbService } from 'src/app/services/db.service';
 import { TomarFotoService } from 'src/app/services/tomar-foto.service';
 
 @Component({
@@ -10,7 +12,7 @@ import { TomarFotoService } from 'src/app/services/tomar-foto.service';
 export class PerfilAlumnoPage implements OnInit {
   imageData: any;
 
-  constructor(private menu: MenuController, private c:TomarFotoService) {
+  constructor(private menu: MenuController, private c:TomarFotoService, public nativeStorage: NativeStorage, private servicio: DbService) {
     this.menu.enable(true);}
 
     tomarF(){
