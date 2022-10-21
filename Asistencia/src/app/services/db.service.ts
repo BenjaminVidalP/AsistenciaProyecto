@@ -206,6 +206,29 @@ ingreso2(nombre,clave){
     })
   }
 
+  buscarUsuarioE() {
+    //ejecuto la consulta
+    return this.database.executeSql('SELECT * from users WHERE nombre = ? and clave = ? and id_rol = 2', []).then(data2 => {
+      //creo el arreglo para los registros
+      let items: Users[] = [];
+      //si existen filas
+      if (data2.rows.length > 0) {
+        //recorro el cursor y lo agrego al arreglo
+        for (var i = 0; i < data2.rows.length; i++) {
+          items.push({
+            id: data2.rows.item(i).id,
+            nombre: data2.rows.item(i).nombre,
+            clave: data2.rows.item(i).clave,
+            id_rol: data2.rows.item(i).id_rol
+          })
+        }
+      }
+      //actualizo el observable
+      this.listaUsers.next(items);
+
+    })
+  }
+
   buscarRamos() {
     //ejecuto la consulta
     return this.database.executeSql('SELECT * FROM ramos', []).then(data2 => {

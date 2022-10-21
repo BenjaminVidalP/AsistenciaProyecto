@@ -19,6 +19,11 @@ export class PerfilAlumnoPage implements OnInit {
       this.c.takePicture();
     }
 
+    VistaUsuario() {  
+      this.servicio.buscarUsuarios
+    }
+
+
   ngOnInit() {
     this.c.regresarfoto().subscribe((res) => {
       this.imageData = res;

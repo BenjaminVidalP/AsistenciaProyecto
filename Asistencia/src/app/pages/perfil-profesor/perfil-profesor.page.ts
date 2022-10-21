@@ -8,19 +8,19 @@ import { TomarFotoService } from 'src/app/services/tomar-foto.service';
   styleUrls: ['../perfil-alumno/perfil-alumno.page.scss'],
 })
 export class PerfilProfesorPage implements OnInit {
-  imageData: any;
+  imageData1: any;
 
   constructor(private menu: MenuController, private c:TomarFotoService) {
     this.menu.enable(true);
-   }
+    }
 
-   tomarF(){
+    tomarF(){
     this.c.takePicture();
-   }
+    }
 
   ngOnInit() {
     this.c.regresarfoto().subscribe((res) => {
-      this.imageData = res;
+      this.imageData1 = res;
     })
   }
 

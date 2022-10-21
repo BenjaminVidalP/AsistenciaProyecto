@@ -14,13 +14,17 @@
 
     <div class="usuario--container">
       <div class="primer--container">
-        <ion-label class="bienvenido">Benjamin Vidal</ion-label>
+        <ion-item color="warning">
+        <ion-label class="bienvenido"> Benjamin Vidal</ion-label>
+        </ion-item>
+        <ion-item color="warning">
         <ion-label class="nombre">Ingeneria en informatica</ion-label>
+        </ion-item>
       </div>
       <div id="container">
-        <ion-card>
+        <ion-card color="warning">
           
-          <img class="img-perfil"  [src]="imageData" alt="foto" *ngIf="imageData[0]">
+          <img  class="img-perfil"  [src]="imageData" alt="foto" *ngIf="imageData[0]">
           
         </ion-card>
       </div>
