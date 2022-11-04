@@ -355,6 +355,12 @@ ingreso2(nombre,clave,id_rol){
     }).catch( e => console.log(e) ); 
   }
 
+  obtenerNativeStorage(): any[]{
+    const datos = JSON.parse(localStorage.getItem('todos'));
+
+    return datos || [];
+  }
+
 
 
 

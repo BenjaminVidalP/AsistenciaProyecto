@@ -29,10 +29,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/inicio-sesion/inicio-sesion.module').then( m => m.InicioSesionPageModule)
   },
   {
-    path: 'registro',
-    loadChildren: () => import('./pages/registro/registro.module').then( m => m.RegistroPageModule)
-  },
-  {
     path: 'codigoqr',
     loadChildren: () => import('./pages/codigoqr/codigoqr.module').then( m => m.CodigoqrPageModule)
   },
