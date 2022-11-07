@@ -15,7 +15,10 @@ import { NativeStorage } from '@awesome-cordova-plugins/native-storage/ngx';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, BrowserAnimationsModule, QRCodeModule, HttpClientModule],
+  imports: [BrowserModule, IonicModule.forRoot({
+      rippleEffect: false,
+      mode: 'md'
+  }), AppRoutingModule, BrowserAnimationsModule, QRCodeModule, HttpClientModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, Camera, SQLite, NativeStorage],
   bootstrap: [AppComponent],
 })
