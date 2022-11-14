@@ -31,8 +31,7 @@ export class InicioSesionPage implements OnInit {
 
   luser: any = {
     nombre: "",
-    clave: "",
-    id_rol: ""
+    clave: ""
   }
 
   nombre:FormControl = new FormControl('',[Validators.required,
@@ -59,9 +58,9 @@ export class InicioSesionPage implements OnInit {
   }
 
   async ingresar(){
-    const response1 = await this.servicio.ingreso(this.luser.nombre, this.luser.clave,this.luser.id_rol)
+    const response1 = await this.servicio.ingreso(this.luser.nombre, this.luser.clave)
     response1 ? this.LoginProf(): this.nombre
-    const response2 = await this.servicio.ingreso2(this.luser.nombre, this.luser.clave,this.luser.id_rol)
+    const response2 = await this.servicio.ingreso2(this.luser.nombre, this.luser.clave)
     response2 ? this.LoginAlum(): this.nombre
   }
 

@@ -129,8 +129,8 @@ export class DbService {
   }
 
 
-  ingreso(nombre,clave,id_rol){
-    let data = [nombre, clave,id_rol]; 
+  ingreso(nombre,clave){
+    let data = [nombre, clave]; 
     return this.database.executeSql('SELECT * from users WHERE nombre = ? and clave = ? and id_rol = 1' , data).then(res => {
       let items: Users[] = [];
       //si existen filas
@@ -145,7 +145,7 @@ export class DbService {
           })
         }
         //actualizo el observable
-      this.nativeStorage.setItem(nombre,id_rol)
+      this.nativeStorage.setItem('ingreso', nombre)
 
       return true; 
       }
@@ -155,8 +155,8 @@ export class DbService {
   })
 }
 
-ingreso2(nombre,clave,id_rol){
-  let data = [nombre, clave,id_rol]; 
+ingreso2(nombre,clave){
+  let data = [nombre, clave]; 
   return this.database.executeSql('SELECT * from users WHERE nombre = ? and clave = ? and id_rol = 2' , data).then(res => {
     let items: Users[] = [];
     //si existen filas
@@ -171,7 +171,7 @@ ingreso2(nombre,clave,id_rol){
         })
       }
       //actualizo el observable
-    this.nativeStorage.setItem(nombre,id_rol)
+    this.nativeStorage.setItem('ingreso', nombre)
 
 
     return true; 
