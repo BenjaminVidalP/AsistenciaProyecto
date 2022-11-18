@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { QRCodeModule } from 'angularx-qrcode';
+import { EmailComposer } from '@ionic-native/email-composer/ngx';
 
 import { HttpClientModule } from '@angular/common/http';
 import { SQLite } from '@awesome-cordova-plugins/sqlite/ngx';
@@ -19,7 +20,7 @@ import { NativeStorage } from '@awesome-cordova-plugins/native-storage/ngx';
       rippleEffect: false,
       mode: 'md'
   }), AppRoutingModule, BrowserAnimationsModule, QRCodeModule, HttpClientModule],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, Camera, SQLite, NativeStorage],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, EmailComposer, Camera, SQLite, NativeStorage],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
