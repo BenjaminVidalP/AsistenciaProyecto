@@ -22,14 +22,14 @@ describe('DbService', () => {
   });
 
   it('returning empty nativestorage', () => {
-    expect(service.obtenerNativeStorage()).toEqual([]);
+    expect(service.obtenerLocalStorage()).toEqual([]);
   });
 
   it('returning on nativestorage', () => {
     const arr = ['Minecraft'];
     localStorage.setItem('todos',JSON.stringify(arr));
 
-    expect(service.obtenerNativeStorage()).toEqual([]);
+    expect(service.obtenerLocalStorage()).toEqual([]);
   });
 
   

@@ -9,6 +9,7 @@ import { Seccion } from './seccion';
 import { Rol } from './rol';
 import { Asigsecci } from './asigsecci';
 import { Listado } from './listado';
+import { Joinrol } from './joinrol';
 @Injectable({
   providedIn: 'root'
 })
@@ -23,6 +24,8 @@ export class DbService {
   Asistencia: string = "CREATE TABLE IF NOT EXISTS asistencia(id_asistencia INTEGER PRIMARY KEY autoincrement, fecha DATE NOT NULL,qr VARCHAR (40) NOT NULL, hora_ini VARCHAR(10) NOT NULL, hora_fin VARCHAR (10) NOT NULL);";
   Detalle: string = "CREATE TABLE IF NOT EXISTS detalle_asist(id_detalle INTEGER PRIMARY KEY autoincrement, estado VARCHAR (12) NOT NULL );";
   
+  Joinrol: string = "CREATE TABLE IF NOT EXISTS joinrol(nombre VARCHAR(30), nombre_rol VARCHAR(30) NULL);";
+
   //variable para el insert de la tabla
   RolP: string = "INSERT or IGNORE INTO rol(id_rol,nombre_rol) VALUES (1,'Profesor');";
   RolE: string = "INSERT or IGNORE INTO rol(id_rol,nombre_rol) VALUES (2,'Estudiante');";
@@ -39,6 +42,7 @@ export class DbService {
   listaListados = new BehaviorSubject([]);
   listaAsistencias = new BehaviorSubject([]);
   listaDetalles = new BehaviorSubject([]);
+  listaJoinrol = new BehaviorSubject([]);
 
   private isDBReady: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
@@ -61,7 +65,7 @@ export class DbService {
     this.platform.ready().then(() => {
       //creamos la BD
       this.sqlite.create({
-        name: 'bdusuarios.db',
+        name: 'bdusuario.db',
         location: 'default'
       }).then((db: SQLiteObject) => {
         this.database = db;
@@ -127,7 +131,9 @@ export class DbService {
   fetchListados(): Observable<Listado[]> {
     return this.listaListados.asObservable();
   }
-
+  fetchJoinrol(): Observable<Listado[]> {
+    return this.listaJoinrol.asObservable();
+  }
 
   ingreso(nombre,clave){
     let data = [nombre, clave]; 
@@ -147,7 +153,7 @@ export class DbService {
         //actualizo el observable
       this.listaUsers.next(items);
       this.nativeStorage.setItem('ingreso', nombre)
-
+        this.joinroles();
       return true; 
       }
       else{
@@ -322,7 +328,7 @@ ingreso2(nombre,clave){
 
   insertarUsuarios(id,nombre,clave,id_rol){
     let data=[id,nombre,clave,id_rol];
-    this.database.executeSql('INSERT INTO users(id,nombre,clave,id_rol) VALUES (?,?,?,?)',data).then(() =>{
+    this.database.executeSql('INSERT or Ignore INTO users(id,nombre,clave,id_rol) VALUES (?,?,?,?)',data).then(() =>{
       this.buscarUsuarios
       console.log("Insert ejecutado")
     }).catch( e => console.log(e) ); 
@@ -330,40 +336,58 @@ ingreso2(nombre,clave){
 
   insertarRamos(id,sigla,nombre){
     let data=[id,sigla,nombre];
-    this.database.executeSql('INSERT INTO ramos(id,sigla,nombre) VALUES (?,?,?)',data).then(() =>{
+    this.database.executeSql('INSERT or Ignore INTO ramos(id,sigla,nombre) VALUES (?,?,?)',data).then(() =>{
       this.buscarRamos
       console.log("Insert ejecutado")
     }).catch( e => console.log(e) ); 
   }
   insertarSecciones(id,sigla){
     let data=[id,sigla];
-    this.database.executeSql('INSERT INTO seccion(id, sigla) VALUES (?,?)',data).then(() =>{
+    this.database.executeSql('INSERT or Ignore INTO seccion(id, sigla) VALUES (?,?)',data).then(() =>{
       this.buscarSecciones
       console.log("Insert ejecutado")
     }).catch( e => console.log(e) ); 
   }
   insertarAsignaturaSecciones(id,id_ramo,id_seccion,id_profesor){
     let data=[id,id_ramo,id_seccion,id_profesor];
-    this.database.executeSql('INSERT INTO asigsecci(id,id_ramo,id_seccion,id_profesor) VALUES (?,?,?,?)',data).then(() =>{
+    this.database.executeSql('INSERT or Ignore INTO asigsecci(id,id_ramo,id_seccion,id_profesor) VALUES (?,?,?,?)',data).then(() =>{
       this.buscarAsignaturasSecciones
       console.log("Insert ejecutado")
     }).catch( e => console.log(e) ); 
   }
   insertarListados(id,id_estudiante,id_asigsecci){
     let data=[id,id_estudiante,id_asigsecci];
-    this.database.executeSql('INSERT INTO listado(id,id_estudiante,id_asigsecci) VALUES (?,?,?)',data).then(() =>{
+    this.database.executeSql('INSERT or Ignore INTO listado(id,id_estudiante,id_asigsecci) VALUES (?,?,?)',data).then(() =>{
       this.buscarListados
       console.log("Insert ejecutado")
     }).catch( e => console.log(e) ); 
   }
 
-  obtenerNativeStorage(): any[]{
+  obtenerLocalStorage(): any[]{
     const datos = JSON.parse(localStorage.getItem('todos'));
 
     return datos || [];
   }
 
-
+  joinroles(){
+      return this.database.executeSql('SELECT users.nombre, rol.nombre_rol FROM users JOIN rol ON users.id_rol=rol.id_rol').then(data2 => {
+      //creo el arreglo para los registros
+      let items: Joinrol[] = [];
+      //si existen filas
+      if (data2.rows.length > 0) {
+        //recorro el cursor y lo agrego al arreglo
+        for (var i = 0; i < data2.rows.length; i++) {
+          items.push({
+            nombre: data2.rows.item(i).nombre,
+            nombre_rol: data2.rows.item(i).nombre_rol
+          })
+          this.presentAlert("Datos: " + items[i].nombre);
+        }
+      }
+      //actualizo el observable
+      this.listaJoinrol.next(items);
+    })
+  }
 
 
   

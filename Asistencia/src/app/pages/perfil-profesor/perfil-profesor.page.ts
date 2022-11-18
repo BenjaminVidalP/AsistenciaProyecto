@@ -19,6 +19,8 @@ export class PerfilProfesorPage implements OnInit {
     id_rol:''
   }];
 
+  joinrol: any;
+
   constructor(private menu: MenuController, private c:TomarFotoService, public nativeStorage: NativeStorage, private servicio: DbService) {
     this.menu.enable(true);
     }
@@ -34,6 +36,15 @@ export class PerfilProfesorPage implements OnInit {
         this.servicio.fetchUsuario().subscribe((item)=>{
           //guardamos estos cambios de información en una variable propia de este ts
           this.users = item;
+        })
+      }
+    })
+    this.servicio.dbState().subscribe((res)=>{
+      if(res){
+        //subscribimos al observable que hace el select en la tabla noticias
+        this.servicio.fetchJoinrol().subscribe((item)=>{
+          //guardamos estos cambios de información en una variable propia de este ts
+          this.joinrol = item;
         })
       }
     })
