@@ -12,6 +12,13 @@ import { TomarFotoService } from 'src/app/services/tomar-foto.service';
 export class PerfilAlumnoPage implements OnInit {
   imageData: any;
 
+  users: any=[{
+    id: '',
+    nombre:'',
+    clave:'',
+    id_rol:''
+  }];
+
   constructor(private menu: MenuController, private c:TomarFotoService, public nativeStorage: NativeStorage, private servicio: DbService) {
     this.menu.enable(true);}
 
@@ -25,6 +32,15 @@ export class PerfilAlumnoPage implements OnInit {
 
 
   ngOnInit() {
+    this.servicio.dbState().subscribe((res)=>{
+      if(res){
+        //subscribimos al observable que hace el select en la tabla noticias
+        this.servicio.fetchUsuario().subscribe((item)=>{
+          //guardamos estos cambios de información en una variable propia de este ts
+          this.users = item;
+        })
+      }
+    })
     this.c.regresarfoto().subscribe((res) => {
       this.imageData = res;
     })

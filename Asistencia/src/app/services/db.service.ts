@@ -145,6 +145,7 @@ export class DbService {
           })
         }
         //actualizo el observable
+      this.listaUsers.next(items);
       this.nativeStorage.setItem('ingreso', nombre)
 
       return true; 
@@ -171,6 +172,7 @@ ingreso2(nombre,clave){
         })
       }
       //actualizo el observable
+      this.listaUsers.next(items);
     this.nativeStorage.setItem('ingreso', nombre)
 
 
