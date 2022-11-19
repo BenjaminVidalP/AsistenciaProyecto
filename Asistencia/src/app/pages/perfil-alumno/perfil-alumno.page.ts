@@ -12,17 +12,9 @@ import { TomarFotoService } from 'src/app/services/tomar-foto.service';
 export class PerfilAlumnoPage implements OnInit {
   imageData: any;
 
-  users: any=[{
-    id: '',
-    nombre:'',
-    clave:'',
-    id_rol:''
-  }];
+  users: any;
 
-  joinrol: any=[{
-    nombre: '',
-    nombre_rol: ''
-  }];
+  joinrol: any;
 
   constructor(private menu: MenuController, private c:TomarFotoService, public nativeStorage: NativeStorage, private servicio: DbService) {
     this.menu.enable(true);}
@@ -55,6 +47,9 @@ export class PerfilAlumnoPage implements OnInit {
         })
       }
     })
+    
+
+
     this.c.regresarfoto().subscribe((res) => {
       this.imageData = res;
     })

@@ -12,12 +12,7 @@ import { TomarFotoService } from 'src/app/services/tomar-foto.service';
 export class PerfilProfesorPage implements OnInit {
   imageData1: any;
 
-  users: any=[{
-    id: '',
-    nombre:'',
-    clave:'',
-    id_rol:''
-  }];
+  users: any;
 
   joinrol: any;
 

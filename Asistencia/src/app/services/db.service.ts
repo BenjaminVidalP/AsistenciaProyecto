@@ -84,6 +84,7 @@ export class DbService {
       await this.database.executeSql(this.RolP,[]);
       await this.database.executeSql(this.RolE,[]);
       await this.database.executeSql(this.User,[]);
+      await this.database.executeSql(this.Joinrol,[]);
       await this.database.executeSql(this.Ramo,[]);
       await this.database.executeSql(this.Seccion,[]);
       await this.database.executeSql(this.Asigsecci,[]);
@@ -92,6 +93,7 @@ export class DbService {
       await this.database.executeSql(this.Detalle,[]);
       this.buscarUsuarios();
       this.buscarRamos();
+      this.joinroles();
       this.buscarSecciones();
       this.buscarAsignaturasSecciones();
       this.buscarListados();
@@ -370,7 +372,7 @@ ingreso2(nombre,clave){
   }
 
   joinroles(){
-      return this.database.executeSql('SELECT users.nombre, rol.nombre_rol FROM users JOIN rol ON users.id_rol=rol.id_rol').then(data2 => {
+      return this.database.executeSql('SELECT users.id, users.nombre, rol.nombre_rol FROM users JOIN rol ON users.id_rol=rol.id_rol', []).then(data2 => {
       //creo el arreglo para los registros
       let items: Joinrol[] = [];
       //si existen filas
@@ -378,14 +380,20 @@ ingreso2(nombre,clave){
         //recorro el cursor y lo agrego al arreglo
         for (var i = 0; i < data2.rows.length; i++) {
           items.push({
+            id: data2.rows.item(i).id,
             nombre: data2.rows.item(i).nombre,
             nombre_rol: data2.rows.item(i).nombre_rol
+            
           })
           this.presentAlert("Datos: " + items[i].nombre);
         }
-      }
+      
       //actualizo el observable
       this.listaJoinrol.next(items);
+      return true; 
+      }else{
+        return false;
+    }
     })
   }
 
