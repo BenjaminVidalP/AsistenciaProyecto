@@ -180,7 +180,7 @@ ingreso2(nombre,clave){
         })
       }
       //actualizo el observable
-      this.listaUsers.next(items);
+    this.listaUsers.next(items);
     this.nativeStorage.setItem('ingreso', nombre)
 
 
@@ -372,7 +372,7 @@ ingreso2(nombre,clave){
   }
 
   joinroles(){
-      return this.database.executeSql('SELECT users.id, users.nombre, rol.nombre_rol FROM users JOIN rol ON users.id_rol=rol.id_rol', []).then(data2 => {
+      return this.database.executeSql('SELECT users.id, users.nombre, rol.nombre_rol FROM users JOIN rol ON users.id_rol=rol.id_rol WHERE users.id= 1', []).then(data2 => {
       //creo el arreglo para los registros
       let items: Joinrol[] = [];
       //si existen filas
@@ -396,8 +396,6 @@ ingreso2(nombre,clave){
     }
     })
   }
-
-
   
 }
 
