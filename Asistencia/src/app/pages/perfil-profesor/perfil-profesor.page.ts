@@ -34,15 +34,6 @@ export class PerfilProfesorPage implements OnInit {
         })
       }
     })
-    this.servicio.dbState().subscribe((res)=>{
-      if(res){
-        //subscribimos al observable que hace el select en la tabla noticias
-        this.servicio.fetchJoinrol().subscribe((item)=>{
-          //guardamos estos cambios de información en una variable propia de este ts
-          this.joinrol = item;
-        })
-      }
-    })
     this.c.regresarfoto().subscribe((res) => {
       this.imageData1 = res;
     })

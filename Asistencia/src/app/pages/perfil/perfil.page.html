@@ -12,42 +12,28 @@
     <ion-avatar>
       <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
     </ion-avatar>
-
     
     <ion-card>
       <ion-card-content>
-        <ion-list>
-          <ion-item>
+          <ion-item color="warning">
             
             <ion-label position="floating" >Nombre:</ion-label>
-            <ion-input type="text" ></ion-input>
+            <ion-input minlength="4" maxlength="20" type="text" [(ngModel)]="perfiles.nombre"></ion-input>
           </ion-item>
-      
-          <ion-item>
-            <ion-label position="floating">Correo:</ion-label>
-            <ion-input type="text"></ion-input>
+          <ion-item color="warning">
+
+            <ion-label position="floating">Apellido:</ion-label>
+            <ion-input minlength="4" maxlength="20" type="text" [(ngModel)]="perfiles.apellido"></ion-input>
           </ion-item>
-      
-      
-          <ion-item>
-            <ion-label  position="floating" >Clave:</ion-label>
-            <ion-input type="password"></ion-input>
+
+          <ion-item color="warning">
+            <ion-label  position="floating" >Correo:</ion-label>
+            <ion-input minlength="2" maxlength="45" type="email" [(ngModel)]="perfiles.correo"></ion-input>
           </ion-item>
-      
-          <ion-item>
-            <ion-label  position="floating">Confirmar Clave:</ion-label>
-            <ion-input type="password"></ion-input>
-          </ion-item>
-        </ion-list>
     
       </ion-card-content>
     </ion-card>
 
-    <ion-button expand="block" color="warning">Guardar Cambios</ion-button>
-
-    
- 
-
-
+    <ion-button expand="block" color="warning" (click)="Entrar()">Guardar Cambios</ion-button>
 
 </ion-content>

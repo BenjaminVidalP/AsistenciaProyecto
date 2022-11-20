@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, NavigationExtras, Route, Router } from '@angular/router';
 import { NativeStorage } from '@awesome-cordova-plugins/native-storage/ngx';
 import { MenuController } from '@ionic/angular';
 import { DbService } from 'src/app/services/db.service';
@@ -14,9 +15,9 @@ export class PerfilAlumnoPage implements OnInit {
 
   users: any;
 
-  joinrol: any;
 
-  constructor(private menu: MenuController, private c:TomarFotoService, public nativeStorage: NativeStorage, private servicio: DbService) {
+  constructor(private menu: MenuController, private c:TomarFotoService, public nativeStorage: NativeStorage, private servicio: DbService, private navigationExtras: NavigationExtras, private activedRouter: ActivatedRoute, private router: Router) {
+
     this.menu.enable(true);}
 
     tomarF(){
@@ -38,16 +39,6 @@ export class PerfilAlumnoPage implements OnInit {
         })
       }
     })
-    this.servicio.dbState().subscribe((res)=>{
-      if(res){
-        //subscribimos al observable que hace el select en la tabla noticias
-        this.servicio.fetchJoinrol().subscribe((item)=>{
-          //guardamos estos cambios de información en una variable propia de este ts
-          this.joinrol = item;
-        })
-      }
-    })
-    
 
 
     this.c.regresarfoto().subscribe((res) => {

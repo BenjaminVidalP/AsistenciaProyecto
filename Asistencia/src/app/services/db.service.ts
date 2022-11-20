@@ -9,7 +9,7 @@ import { Seccion } from './seccion';
 import { Rol } from './rol';
 import { Asigsecci } from './asigsecci';
 import { Listado } from './listado';
-import { Joinrol } from './joinrol';
+import { Perfiles } from './perfiles';
 @Injectable({
   providedIn: 'root'
 })
@@ -23,8 +23,8 @@ export class DbService {
   Listado: string = "CREATE TABLE IF NOT EXISTS listado(id INTEGER PRIMARY KEY autoincrement, id_estudiante NUMBER NOT NULL, id_asigsecci NUMBER NOT NULL);";
   Asistencia: string = "CREATE TABLE IF NOT EXISTS asistencia(id_asistencia INTEGER PRIMARY KEY autoincrement, fecha DATE NOT NULL,qr VARCHAR (40) NOT NULL, hora_ini VARCHAR(10) NOT NULL, hora_fin VARCHAR (10) NOT NULL);";
   Detalle: string = "CREATE TABLE IF NOT EXISTS detalle_asist(id_detalle INTEGER PRIMARY KEY autoincrement, estado VARCHAR (12) NOT NULL );";
-  
-  Joinrol: string = "CREATE TABLE IF NOT EXISTS joinrol(nombre VARCHAR(30), nombre_rol VARCHAR(30) NULL);";
+
+  Perfiles: string = "CREATE TABLE IF NOT EXISTS perfiles (id_perfil_usuario INTEGER PRIMARY KEY autoincrement, id_usuario NUMBER NULL, nombre VARCHAR(50) NULL, apellido VARCHAR(50) NULL, imagen BLOB NULL, correo VARCHAR(50) NULL, FOREIGN KEY(id_usuario) REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE);";
 
   //variable para el insert de la tabla
   RolP: string = "INSERT or IGNORE INTO rol(id_rol,nombre_rol) VALUES (1,'Profesor');";
@@ -42,7 +42,7 @@ export class DbService {
   listaListados = new BehaviorSubject([]);
   listaAsistencias = new BehaviorSubject([]);
   listaDetalles = new BehaviorSubject([]);
-  listaJoinrol = new BehaviorSubject([]);
+  listaPerfiles = new BehaviorSubject([]);
 
   private isDBReady: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
@@ -84,7 +84,7 @@ export class DbService {
       await this.database.executeSql(this.RolP,[]);
       await this.database.executeSql(this.RolE,[]);
       await this.database.executeSql(this.User,[]);
-      await this.database.executeSql(this.Joinrol,[]);
+      await this.database.executeSql(this.Perfiles,[]);
       await this.database.executeSql(this.Ramo,[]);
       await this.database.executeSql(this.Seccion,[]);
       await this.database.executeSql(this.Asigsecci,[]);
@@ -93,7 +93,7 @@ export class DbService {
       await this.database.executeSql(this.Detalle,[]);
       this.buscarUsuarios();
       this.buscarRamos();
-      this.joinroles();
+      this.fetchPerfiles();
       this.buscarSecciones();
       this.buscarAsignaturasSecciones();
       this.buscarListados();
@@ -133,8 +133,9 @@ export class DbService {
   fetchListados(): Observable<Listado[]> {
     return this.listaListados.asObservable();
   }
-  fetchJoinrol(): Observable<Listado[]> {
-    return this.listaJoinrol.asObservable();
+
+  fetchPerfiles(): Observable<Listado[]> {
+    return this.listaPerfiles.asObservable();
   }
 
   ingreso(nombre,clave){
@@ -153,9 +154,7 @@ export class DbService {
           })
         }
         //actualizo el observable
-      this.listaUsers.next(items);
-      this.nativeStorage.setItem('ingreso', nombre)
-        this.joinroles();
+        localStorage.setItem('ingreso',nombre);
       return true; 
       }
       else{
@@ -180,8 +179,8 @@ ingreso2(nombre,clave){
         })
       }
       //actualizo el observable
-    this.listaUsers.next(items);
-    this.nativeStorage.setItem('ingreso', nombre)
+    localStorage.setItem('ingreso',nombre);
+
 
 
     return true; 
@@ -364,38 +363,83 @@ ingreso2(nombre,clave){
       console.log("Insert ejecutado")
     }).catch( e => console.log(e) ); 
   }
+  actualizarPerfil(nombre,apellido,correo,id_perfil_usuario){
+    let data=[nombre,apellido,correo,id_perfil_usuario];
+    return this.database.executeSql('UPDATE perfiles SET nombre = ?, apellido = ?, correo = ? WHERE id_perfil_usuario = ?', data).then(data2 => {
+      this.TraerPerfiles();
+    })
+  }
+  actualizarFoto(imagen,id_perfil_usuario){
+    let data=[imagen,id_perfil_usuario];
+    return this.database.executeSql('UPDATE perfiles SET imagen = ? WHERE id_perfil_usuario = ?', data).then(data2 => {
+      this.TraerPerfiles();
+    })
+  }
 
+
+  // intento de prueba unitaria
   obtenerLocalStorage(): any[]{
     const datos = JSON.parse(localStorage.getItem('todos'));
 
     return datos || [];
   }
 
-  joinroles(){
-      return this.database.executeSql('SELECT users.id, users.nombre, rol.nombre_rol FROM users JOIN rol ON users.id_rol=rol.id_rol WHERE users.id= 1', []).then(data2 => {
+  TraerPerfiles() {
+    //ejecuto la consulta
+    return this.database.executeSql('SELECT * FROM perfiles', []).then(res => {
       //creo el arreglo para los registros
-      let items: Joinrol[] = [];
+      let items: Perfiles[] = [];
       //si existen filas
-      if (data2.rows.length > 0) {
+      if (res.rows.length > 0) {
         //recorro el cursor y lo agrego al arreglo
-        for (var i = 0; i < data2.rows.length; i++) {
+        for (var i = 0; i < res.rows.length; i++) {
           items.push({
-            id: data2.rows.item(i).id,
-            nombre: data2.rows.item(i).nombre,
-            nombre_rol: data2.rows.item(i).nombre_rol
-            
+            id_perfil_usuario: res.rows.item(i).id_perfil_usuario,
+            id_usuario: res.rows.item(i).id_usuario,
+            nombre: res.rows.item(i).nombre,
+            apellido: res.rows.item(i).apellido,
+            imagen: res.rows.item(i).imagen,
+            correo: res.rows.item(i).correo
           })
-          this.presentAlert("Datos: " + items[i].nombre);
         }
-      
+      }
       //actualizo el observable
-      this.listaJoinrol.next(items);
-      return true; 
+      this.listaPerfiles.next(items);
+    })
+  }
+
+  Perfilusuario(id_perfil_usuario) {
+    let data = [id_perfil_usuario];
+    //ejecuto la consulta
+    return this.database.executeSql('SELECT * FROM perfiles WHERE id_perfil_usuario = ?', data).then(res => {
+      //creo el arreglo para los registros
+      let items: Perfiles[] = [];
+      //si existen filas
+      if (res.rows.length > 0) {
+        //recorro el cursor y lo agrego al arreglo
+        for (var i = 0; i < res.rows.length; i++) {
+          items.push({
+            id_perfil_usuario: res.rows.item(i).id_perfil_usuario,
+            id_usuario: res.rows.item(i).id_usuario,
+            nombre: res.rows.item(i).nombre,
+            apellido: res.rows.item(i).apellido,
+            imagen: res.rows.item(i).imagen,
+            correo: res.rows.item(i).correo,
+
+          })
+        }
+        //actualizo el observable
+        localStorage.setItem('perfiles', id_perfil_usuario)
+
+        return true;
       }else{
         return false;
     }
+
     })
   }
+
+  
   
 }
 
