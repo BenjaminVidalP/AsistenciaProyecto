@@ -61,13 +61,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/horario-asig/horario-asig.module').then( m => m.HorarioAsigPageModule)
   },
   {
-    path: 'editarperfil-a',
-    loadChildren: () => import('./pages/editarperfil-a/editarperfil-a.module').then( m => m.EditarperfilAPageModule)
+    path: 'perfil',
+    loadChildren: () => import('./pages/perfil/perfil.module').then( m => m.PerfilPageModule)
   },
-  {
-    path: 'editarperfil-p',
-    loadChildren: () => import('./pages/editarperfil-p/editarperfil-p.module').then( m => m.EditarperfilPPageModule)
-  },
+
 
 
 
