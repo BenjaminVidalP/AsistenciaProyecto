@@ -63,7 +63,15 @@ const routes: Routes = [
   {
     path: 'perfil',
     loadChildren: () => import('./pages/perfil/perfil.module').then( m => m.PerfilPageModule)
+  },  {
+    path: 'perfil-a',
+    loadChildren: () => import('./pages/perfil-a/perfil-a.module').then( m => m.PerfilAPageModule)
   },
+  {
+    path: 'perfil-p',
+    loadChildren: () => import('./pages/perfil-p/perfil-p.module').then( m => m.PerfilPPageModule)
+  },
+
 
 
 
