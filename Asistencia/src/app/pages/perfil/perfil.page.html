@@ -13,7 +13,7 @@
     <div id="container">
       <ion-card color="warning">
       
-        <img  class="img-perfil"  [src]="imageData" alt="foto" *ngIf="imageData[0]">
+        <img  class="img-perfil" img [src]="imagen" alt="foto">
       
       </ion-card>
     </div>
@@ -33,7 +33,7 @@
 
           <ion-item color="warning">
             <ion-label  position="floating" >Correo:</ion-label>
-            <ion-input minlength="2" maxlength="45" type="email" [(ngModel)]="perfiles.correo"></ion-input>
+            <ion-input minlength="2" maxlength="45" type="email" [(ngModel)]="perfiles.email"></ion-input>
           </ion-item>
     
       </ion-card-content>

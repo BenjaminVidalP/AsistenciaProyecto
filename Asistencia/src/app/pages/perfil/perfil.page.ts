@@ -72,7 +72,7 @@ async Entrar(){
     for (let i = 0; i < this.perfil.length; i++) {
     if(this.perfil[i].id_perfil_usuario == this.token ){
       this.id_usuario = this.perfil[i].id_usuario
-      this.nombre = this.perfil[i].nombre
+      this.nombrea = this.perfil[i].nombre
       this.apellido = this.perfil[i].apellido
       this.imagen = this.perfil[i].imagen
       this.correo = this.perfil[i].correo

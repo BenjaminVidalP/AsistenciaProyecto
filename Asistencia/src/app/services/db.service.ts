@@ -363,13 +363,19 @@ ingreso2(nombre,clave){
       console.log("Insert ejecutado")
     }).catch( e => console.log(e) ); 
   }
-  actualizarPerfil(nombre,apellido,correo,id_perfil_usuario){
+  actualizarPerfil(nombre,apellido,correo,id_perfil_usuario){ //registrar perfil
     let data=[nombre,apellido,correo,id_perfil_usuario];
     return this.database.executeSql('UPDATE perfiles SET nombre = ?, apellido = ?, correo = ? WHERE id_perfil_usuario = ?', data).then(data2 => {
       this.TraerPerfiles();
     })
   }
-  actualizarFoto(imagen,id_perfil_usuario){
+  actualizarIdPerfil(id_perfil_usuario,id_usuario){ //registrar  id perfil
+    let data=[id_perfil_usuario,id_usuario];
+    return this.database.executeSql('INSERT OR REPLACE INTO perfiles(id_perfil_usuario, id_usuario) VALUES (?,?)', data).then(data2 => {
+      this.TraerPerfiles();
+    })
+  }
+  actualizarFoto(imagen,id_perfil_usuario){ //registrar foto
     let data=[imagen,id_perfil_usuario];
     return this.database.executeSql('UPDATE perfiles SET imagen = ? WHERE id_perfil_usuario = ?', data).then(data2 => {
       this.TraerPerfiles();
@@ -384,7 +390,7 @@ ingreso2(nombre,clave){
     return datos || [];
   }
 
-  TraerPerfiles() {
+  TraerPerfiles() { //BUSCAR PERFILES
     //ejecuto la consulta
     return this.database.executeSql('SELECT * FROM perfiles', []).then(res => {
       //creo el arreglo para los registros
@@ -408,7 +414,7 @@ ingreso2(nombre,clave){
     })
   }
 
-  Perfilusuario(id_perfil_usuario) {
+  Perfilusuario(id_perfil_usuario) { //BUSCAR PERFIL
     let data = [id_perfil_usuario];
     //ejecuto la consulta
     return this.database.executeSql('SELECT * FROM perfiles WHERE id_perfil_usuario = ?', data).then(res => {

@@ -12,23 +12,16 @@ import { TomarFotoService } from 'src/app/services/tomar-foto.service';
 })
 export class PerfilAPage implements OnInit {
 
-  perfiles: any = {
-    nombre:'',
-    apellido:'',
-    email:''
-  };
   usuario: any[] = [];
-  id: number;
+  id_rol: number;
   id_pe: number;
   nombre_pe: any;
-  nombre: any;
-  clave: any;
-  id_rol: number;
+
 
   perfil: any[] = [];
   id_perfil_usuario: number;
   id_usuario: number;
-  nombrea: any;
+  nombre: any;
   apellido: any;
   imagen: any;
   correo: any;
@@ -59,6 +52,7 @@ export class PerfilAPage implements OnInit {
     }
 
     tomarF(){
+      this.c.takePicture();
     }
 
   ngOnInit() {

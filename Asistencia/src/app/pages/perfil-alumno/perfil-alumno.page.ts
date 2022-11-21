@@ -73,13 +73,14 @@ export class PerfilAlumnoPage implements OnInit {
       }
       this.token=localStorage.getItem('ingreso')
       console.log("Hola " + this.token)
-      for (let i = 0; i < this.perfil.length; i++) {
-      if(this.perfil[i].id_perfil_usuario == this.token ){
-        this.id_usuario = this.perfil[i].id_usuario
-        this.nombre = this.perfil[i].nombre
-        this.apellido = this.perfil[i].apellido
-        this.imagen = this.perfil[i].imagen
-        this.correo = this.perfil[i].correo
+      for (let i = 0; i < this.usuario.length; i++) {
+      if(this.usuario[i].nombre == this.token ){
+        this.id = this.usuario[i].id_usuario
+        this.nombre = this.usuario[i].nombre
+        this.clave = this.usuario[i].clave
+        this.id_rol = this.usuario[i].id_rol
+        this.servicio.actualizarIdPerfil(this.usuario[i].id,this.usuario[i].id);
+        this.servicio.Perfilusuario(this.usuario[i].id);
       }
       }
     })
