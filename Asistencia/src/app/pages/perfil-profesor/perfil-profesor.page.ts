@@ -5,9 +5,9 @@ import { DbService } from 'src/app/services/db.service';
 import { TomarFotoService } from 'src/app/services/tomar-foto.service';
 
 @Component({
-  selector: 'app-perfil-alumno',
-  templateUrl: './perfil-alumno.page.html',
-  styleUrls: ['./perfil-alumno.page.scss'],
+  selector: 'app-perfil-profesor',
+  templateUrl: './perfil-profesor.page.html',
+  styleUrls: ['./perfil-profesor.page.scss'],
 })
 export class PerfilProfesorPage implements OnInit {
 
