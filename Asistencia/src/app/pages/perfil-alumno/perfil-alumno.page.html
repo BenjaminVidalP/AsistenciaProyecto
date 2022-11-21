@@ -4,7 +4,6 @@
     <ion-buttons slot="start" class="conteiner--btn">
       <ion-menu-button color="dark"></ion-menu-button>
     </ion-buttons>
-    <ion-buttons  slot="end" class="conteiner--btn" (click)="tomarF()">Subir imagen</ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -19,13 +18,6 @@
           <ion-label class="bienvenido">{{x.nombre}}</ion-label>
           </ion-item>
         </ion-item>
-      </div>
-      <div id="container">
-        <ion-card color="warning">
-          
-          <img  class="img-perfil"  [src]="imageData" alt="foto" *ngIf="imageData[0]">
-          
-        </ion-card>
       </div>
     </div>
 

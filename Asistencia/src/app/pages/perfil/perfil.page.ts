@@ -48,15 +48,14 @@ export class PerfilPage implements OnInit {
 
 }
 
-  ngOnInit() {
-}
+
 
 async Entrar(){
   await this.servicio.actualizarPerfil(this.perfiles.nombre, this.perfiles.apellido, this.perfiles.email,this.id_pe) 
   this.servicio.TraerPerfiles()
   let navigationExtras: NavigationExtras = {
     state: {
-      nombreE: this.id,
+      nombrePE: this.id,
       apellidoE: this.nombre,
       correoE: this.id_rol
     }
@@ -87,8 +86,17 @@ async Entrar(){
     this.router.navigate(['/perfil-alumno'], navigationExtras);
   }
   
+  
 
+}
 
-} 
+tomarF(){
+  this.c.takePicture();
+}
+ngOnInit() {
+  this.c.regresarfoto().subscribe((res) => {
+    this.imageData = res;
+  })
+}
 
 }

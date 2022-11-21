@@ -4,14 +4,19 @@
     <ion-buttons slot="start" class="conteiner--btn">
       <ion-menu-button color="dark"></ion-menu-button>
     </ion-buttons>
+    <ion-buttons  slot="end" class="conteiner--btn" (click)="tomarF()">Subir imagen</ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   
-    <ion-avatar>
-      <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
-    </ion-avatar>
+    <div id="container">
+      <ion-card color="warning">
+      
+        <img  class="img-perfil"  [src]="imageData" alt="foto" *ngIf="imageData[0]">
+      
+      </ion-card>
+    </div>
     
     <ion-card>
       <ion-card-content>
