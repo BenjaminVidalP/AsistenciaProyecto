@@ -82,5 +82,5 @@ export class PerfilAPage implements OnInit {
       }
     })
   }
-
+ 
 }
