@@ -38,7 +38,7 @@ export class PerfilPage implements OnInit {
   users: any;
   token: any;
 
-  constructor(private menu: MenuController, private c:TomarFotoService, public nativeStorage: NativeStorage, private servicio: DbService, private navigationExtras: NavigationExtras, private activedRouter: ActivatedRoute, private router: Router) {
+  constructor(private menu: MenuController, private c:TomarFotoService, public nativeStorage: NativeStorage, private servicio: DbService, private activedRouter: ActivatedRoute, private router: Router) {
     this.activedRouter.queryParams.subscribe(param =>{
       if(this.router.getCurrentNavigation().extras.state){
         this.id_pe = this.router.getCurrentNavigation().extras.state.id_perfilE;
@@ -46,7 +46,7 @@ export class PerfilPage implements OnInit {
       }
     })
 
-    this.menu.enable(true);}
+}
 
   ngOnInit() {
 }
@@ -69,7 +69,7 @@ async Entrar(){
       })
     }
     this.token=localStorage.getItem('perfiles')
-    console.log("Bienvenido " + this.token)
+    console.log("Hola " + this.token)
     for (let i = 0; i < this.perfil.length; i++) {
     if(this.perfil[i].id_perfil_usuario == this.token ){
       this.id_usuario = this.perfil[i].id_usuario
@@ -89,9 +89,6 @@ async Entrar(){
   
 
 
-  this.c.regresarfoto().subscribe((res) => {
-    this.imageData = res;
-  })
 } 
 
 }
