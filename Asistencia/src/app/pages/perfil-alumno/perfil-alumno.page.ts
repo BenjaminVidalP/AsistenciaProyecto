@@ -53,15 +53,6 @@ export class PerfilAlumnoPage implements OnInit {
 
 
   ngOnInit() {
-    this.servicio.dbState().subscribe((res)=>{
-      if(res){
-        //subscribimos al observable que hace el select en la tabla noticias
-        this.servicio.fetchUsuario().subscribe((item)=>{
-          //guardamos estos cambios de información en una variable propia de este ts
-          this.users = item;
-        })
-      }
-    })
     this.c.regresarfoto().subscribe((res) => {
       this.imageData = res;
     })

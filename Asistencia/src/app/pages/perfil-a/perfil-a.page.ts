@@ -38,6 +38,7 @@ export class PerfilAPage implements OnInit {
         this.id_pe = this.router.getCurrentNavigation().extras.state.idE;
         this.nombre_pe = this.router.getCurrentNavigation().extras.state.nombreE;
         this.id_rol = this.router.getCurrentNavigation().extras.state.rolE;
+        console.log(this.id_pe)
       }
     })
     }

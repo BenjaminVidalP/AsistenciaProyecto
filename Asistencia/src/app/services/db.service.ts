@@ -24,7 +24,7 @@ export class DbService {
   Asistencia: string = "CREATE TABLE IF NOT EXISTS asistencia(id_asistencia INTEGER PRIMARY KEY autoincrement, fecha DATE NOT NULL,qr VARCHAR (40) NOT NULL, hora_ini VARCHAR(10) NOT NULL, hora_fin VARCHAR (10) NOT NULL);";
   Detalle: string = "CREATE TABLE IF NOT EXISTS detalle_asist(id_detalle INTEGER PRIMARY KEY autoincrement, estado VARCHAR (12) NOT NULL );";
 
-  Perfiles: string = "CREATE TABLE IF NOT EXISTS perfiles (id_perfil_usuario INTEGER PRIMARY KEY autoincrement, id_usuario NUMBER NULL, nombre VARCHAR(50) NULL, apellido VARCHAR(50) NULL, imagen BLOB NULL, correo VARCHAR(50) NULL, FOREIGN KEY(id_usuario) REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE);";
+  Perfiles: string = "CREATE TABLE IF NOT EXISTS perfiles (id_perfil_usuario INTEGER PRIMARY KEY autoincrement, id_usuario INTEGER NULL, nombre VARCHAR(50) NULL, apellido VARCHAR(50) NULL, imagen BLOB NULL, correo VARCHAR(50) NULL, FOREIGN KEY(id_usuario) REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE);";
 
   //variable para el insert de la tabla
   RolP: string = "INSERT or IGNORE INTO rol(id_rol,nombre_rol) VALUES (1,'Profesor');";
