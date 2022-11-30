@@ -18,13 +18,13 @@ export class PerfilAPage implements OnInit {
   nombre_pe: any;
 
 
-  perfil: any[] = [];
+  perfiles: any[] = [];
   id_perfil_usuario: number;
   id_usuario: number;
   nombre: any;
   apellido: any;
   imagen: any;
-  correo: any;
+  email: any;
 
   imageData: any;
 
@@ -61,24 +61,23 @@ export class PerfilAPage implements OnInit {
       if (res) {
         this.imageData = res;
         this.servicio.actualizarFoto(this.imageData, this.id_pe);
-        this.servicio.TraerPerfiles();
       }
     })
     this.servicio.dbState().subscribe((res) =>{
       if (res) {
         this.servicio.fetchPerfiles().subscribe(async item => {
-          this.perfil = item;
+          this.perfiles = item;
         })
       }
       this.token=localStorage.getItem('perfiles')
       console.log("Hola " + this.token)
-      for (let i = 0; i < this.perfil.length; i++) {
-      if(this.perfil[i].id_perfil_usuario == this.token ){
-        this.id_usuario = this.perfil[i].id_usuario
-        this.nombre = this.perfil[i].nombre
-        this.apellido = this.perfil[i].apellido
-        this.imagen = this.perfil[i].imagen
-        this.correo = this.perfil[i].correo
+      for (let i = 0; i < this.perfiles.length; i++) {
+      if(this.perfiles[i].id_perfiles_usuario == this.token ){
+        this.id_usuario = this.perfiles[i].id_usuario
+        this.nombre = this.perfiles[i].nombre
+        this.apellido = this.perfiles[i].apellido
+        this.imagen = this.perfiles[i].imagen
+        this.email = this.perfiles[i].email
       }
       }
     })

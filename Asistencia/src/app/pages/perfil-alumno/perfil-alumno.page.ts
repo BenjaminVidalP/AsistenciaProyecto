@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavigationExtras, Router } from '@angular/router';
 import { NativeStorage } from '@awesome-cordova-plugins/native-storage/ngx';
 import { MenuController } from '@ionic/angular';
 import { DbService } from 'src/app/services/db.service';
@@ -31,7 +32,7 @@ export class PerfilAlumnoPage implements OnInit {
   nombrea: any;
   apellido: any;
   imagen: any;
-  correo: any;
+  email: any;
   token: any;
 
   imageData: any;
@@ -39,7 +40,7 @@ export class PerfilAlumnoPage implements OnInit {
   users: any;
 
 
-  constructor(private menu: MenuController, private c:TomarFotoService, public nativeStorage: NativeStorage, private servicio: DbService) {
+  constructor(private menu: MenuController, private c:TomarFotoService, public nativeStorage: NativeStorage, private servicio: DbService, private router: Router) {
 
     this.menu.enable(true);}
 
@@ -50,6 +51,18 @@ export class PerfilAlumnoPage implements OnInit {
     VistaUsuario() {  
       this.servicio.buscarUsuarios
     }
+
+  datos(){
+    let navigationExtras: NavigationExtras = {
+      state: {
+        idE: this.id,
+        nombreE: this.nombre,
+        rolE: this.id_rol
+      }
+    }
+    this.servicio.Perfilusuario(this.id);
+    this.router.navigate(['/perfil-a'], navigationExtras);
+  }
 
 
   ngOnInit() {

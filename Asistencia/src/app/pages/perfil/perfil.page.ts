@@ -31,7 +31,7 @@ export class PerfilPage implements OnInit {
   nombrea: any;
   apellido: any;
   imagen: any;
-  correo: any;
+  email: any;
 
   imageData: any;
 
@@ -57,7 +57,7 @@ async Entrar(){
     state: {
       nombrePE: this.id,
       apellidoE: this.nombre,
-      correoE: this.id_rol
+      emailE: this.id_rol
     }
   }
 
@@ -75,7 +75,7 @@ async Entrar(){
       this.nombrea = this.perfil[i].nombre
       this.apellido = this.perfil[i].apellido
       this.imagen = this.perfil[i].imagen
-      this.correo = this.perfil[i].correo
+      this.email = this.perfil[i].email
     }
     }
   })

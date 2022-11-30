@@ -4,5 +4,5 @@ export class Perfiles {
     nombre: string;
     apellido: string;
     imagen: Blob;
-    correo: string;
+    email: string;
 }
