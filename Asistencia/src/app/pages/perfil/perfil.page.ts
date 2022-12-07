@@ -12,7 +12,7 @@ import { TomarFotoService } from 'src/app/services/tomar-foto.service';
 })
 export class PerfilPage implements OnInit {
 
-  perfiles: any = {
+  perfile: any = {
     nombre:'',
     apellido:'',
     email:''
@@ -25,7 +25,7 @@ export class PerfilPage implements OnInit {
   clave: any;
   id_rol: number;
 
-  perfil: any[] = [];
+  perfiles: any[] = [];
   id_perfil_usuario: number;
   id_usuario: number;
   nombrea: any;
@@ -48,7 +48,7 @@ export class PerfilPage implements OnInit {
 
 }
 async Entrar(){
-  await this.servicio.actualizarPerfil(this.perfiles.nombre, this.perfiles.apellido, this.perfiles.email,this.id_pe) 
+  await this.servicio.actualizarPerfil(this.perfile.nombre, this.perfile.apellido, this.perfile.email,this.id_pe) 
   this.servicio.TraerPerfiles()
   let navigationExtras: NavigationExtras = {
     state: {
@@ -61,18 +61,18 @@ async Entrar(){
   this.servicio.dbState().subscribe((res) => {
     if (res) {
       this.servicio.fetchPerfiles().subscribe(async item => {
-        this.perfil = item;
+        this.perfiles = item;
       })
     }
     this.token=localStorage.getItem('perfiles')
     console.log("Hola " + this.token)
-    for (let i = 0; i < this.perfil.length; i++) {
-    if(this.perfil[i].id_perfil_usuario == this.token ){
-      this.id_usuario = this.perfil[i].id_usuario
-      this.nombrea = this.perfil[i].nombre
-      this.apellido = this.perfil[i].apellido
-      this.imagen = this.perfil[i].imagen
-      this.email = this.perfil[i].email
+    for (let i = 0; i < this.perfiles.length; i++) {
+    if(this.perfiles[i].id_perfil_usuario == this.token ){
+      this.id_usuario = this.perfiles[i].id_usuario
+      this.nombrea = this.perfiles[i].nombre
+      this.apellido = this.perfiles[i].apellido
+      this.imagen = this.perfiles[i].imagen
+      this.email = this.perfiles[i].email
     }
     }
   })

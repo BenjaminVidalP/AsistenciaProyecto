@@ -13,7 +13,7 @@
     <div id="container">
       <ion-card color="warning">
       
-        <img  class="img-perfil" img [src]="imageData" alt="foto">
+        <img  class="img-perfil" img [src]="imageData[0]" alt="foto" *ngIf="imageData[0]">
       
       </ion-card>
     </div>

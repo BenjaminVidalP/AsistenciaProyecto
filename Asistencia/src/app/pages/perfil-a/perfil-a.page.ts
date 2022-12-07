@@ -13,11 +13,10 @@ import { TomarFotoService } from 'src/app/services/tomar-foto.service';
 export class PerfilAPage implements OnInit {
 
   usuario: any[] = [];
+
   id_rol: number;
   id_pe: number;
   nombre_pe: any;
-
-
   perfiles: any[] = [];
   id_perfil_usuario: number;
   id_usuario: number;
@@ -61,6 +60,7 @@ export class PerfilAPage implements OnInit {
       if (res) {
         this.imageData = res;
         this.servicio.actualizarFoto(this.imageData, this.id_pe);
+        this.servicio.TraerPerfiles();
       }
     })
     this.servicio.dbState().subscribe((res) =>{
