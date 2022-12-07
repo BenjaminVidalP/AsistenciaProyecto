@@ -47,9 +47,6 @@ export class PerfilPage implements OnInit {
     })
 
 }
-
-
-
 async Entrar(){
   await this.servicio.actualizarPerfil(this.perfiles.nombre, this.perfiles.apellido, this.perfiles.email,this.id_pe) 
   this.servicio.TraerPerfiles()
