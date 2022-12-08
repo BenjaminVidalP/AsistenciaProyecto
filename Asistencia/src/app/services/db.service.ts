@@ -65,7 +65,7 @@ export class DbService {
     this.platform.ready().then(() => {
       //creamos la BD
       this.sqlite.create({
-        name: 'bdusuario.db',
+        name: 'bdusuarios.db',
         location: 'default'
       }).then((db: SQLiteObject) => {
         this.database = db;
@@ -92,8 +92,8 @@ export class DbService {
       await this.database.executeSql(this.Asistencia,[]);
       await this.database.executeSql(this.Detalle,[]);
       this.buscarUsuarios();
+      this.TraerPerfiles();
       this.buscarRamos();
-      this.fetchPerfiles();
       this.buscarSecciones();
       this.buscarAsignaturasSecciones();
       this.buscarListados();
@@ -134,7 +134,7 @@ export class DbService {
     return this.listaListados.asObservable();
   }
 
-  fetchPerfiles(): Observable<Listado[]> {
+  fetchPerfiles(): Observable<Perfiles[]> {
     return this.listaPerfiles.asObservable();
   }
 

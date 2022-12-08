@@ -72,7 +72,7 @@ export class PerfilAPage implements OnInit {
       this.token=localStorage.getItem('perfiles')
       console.log("Hola " + this.token)
       for (let i = 0; i < this.perfiles.length; i++) {
-      if(this.perfiles[i].id_perfiles_usuario == this.token ){
+      if(this.perfiles[i].id_perfil_usuario == this.token ){
         this.id_usuario = this.perfiles[i].id_usuario
         this.nombre = this.perfiles[i].nombre
         this.apellido = this.perfiles[i].apellido

@@ -48,11 +48,8 @@ export class PerfilAlumnoPage implements OnInit {
       this.c.takePicture();
     }
 
-    VistaUsuario() {  
-      this.servicio.buscarUsuarios
-    }
 
-  datos(){
+  enviarDatos(){
     let navigationExtras: NavigationExtras = {
       state: {
         idE: this.id,

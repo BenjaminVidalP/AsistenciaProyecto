@@ -12,7 +12,7 @@ import { TomarFotoService } from 'src/app/services/tomar-foto.service';
 })
 export class PerfilPage implements OnInit {
 
-  perfile: any = {
+  perfils: any = {
     nombre:'',
     apellido:'',
     email:''
@@ -48,7 +48,7 @@ export class PerfilPage implements OnInit {
 
 }
 async Entrar(){
-  await this.servicio.actualizarPerfil(this.perfile.nombre, this.perfile.apellido, this.perfile.email,this.id_pe) 
+  await this.servicio.actualizarPerfil(this.perfils.nombre, this.perfils.apellido, this.perfils.email,this.id_pe) 
   this.servicio.TraerPerfiles()
   let navigationExtras: NavigationExtras = {
     state: {
