@@ -16,7 +16,7 @@ import { Perfiles } from './perfiles';
 export class DbService {
   //variable para la sentencia de creacion de tablas
   Rol: string = "CREATE TABLE IF NOT EXISTS rol (id_rol INTEGER PRIMARY KEY autoincrement, nombre_rol VARCHAR(30) NULL);";
-  User: string = "CREATE TABLE IF NOT EXISTS users(id INTEGER PRIMARY KEY autoincrement, nombre VARCHAR(30) NOT NULL, clave VARCHAR(30) NOT NULL, id_rol NUMBER NOT NULL, FOREIGN KEY(id_rol) REFERENCES rol(id_rol) ON DELETE CASCADE ON UPDATE CASCADE);";
+  Users: string = "CREATE TABLE IF NOT EXISTS users(id INTEGER PRIMARY KEY autoincrement, nombre VARCHAR(30) NOT NULL, clave VARCHAR(30) NOT NULL, id_rol NUMBER NOT NULL, FOREIGN KEY(id_rol) REFERENCES rol(id_rol) ON DELETE CASCADE ON UPDATE CASCADE);";
   Ramo: string = "CREATE TABLE IF NOT EXISTS ramos(id INTEGER PRIMARY KEY autoincrement, sigla VARCHAR(30) NOT NULL, nombre VARCHAR(50) NOT NULL);";
   Seccion: string = "CREATE TABLE IF NOT EXISTS seccion(id INTEGER PRIMARY KEY autoincrement, sigla VARCHAR(20) NOT NULL);";
   Asigsecci: string = "CREATE TABLE IF NOT EXISTS asigsecci(id INTEGER PRIMARY KEY autoincrement, id_ramo NUMBER NOT NULL, id_seccion NUMBER NOT NULL, id_profesor NUMBER NOT NULL);";
@@ -24,7 +24,7 @@ export class DbService {
   Asistencia: string = "CREATE TABLE IF NOT EXISTS asistencia(id_asistencia INTEGER PRIMARY KEY autoincrement, fecha DATE NOT NULL,qr VARCHAR (40) NOT NULL, hora_ini VARCHAR(10) NOT NULL, hora_fin VARCHAR (10) NOT NULL);";
   Detalle: string = "CREATE TABLE IF NOT EXISTS detalle_asist(id_detalle INTEGER PRIMARY KEY autoincrement, estado VARCHAR (12) NOT NULL );";
 
-  Perfiles: string = "CREATE TABLE IF NOT EXISTS perfiles (id_perfil_usuario INTEGER PRIMARY KEY autoincrement, id_usuario INTEGER NULL, nombre VARCHAR(50) NULL, apellido VARCHAR(50) NULL, imagen BLOB NULL, email VARCHAR(50) NULL, FOREIGN KEY(id_usuario) REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE);";
+  Perfiles: string = "CREATE TABLE IF NOT EXISTS perfiles(id_perfil_usuario INTEGER PRIMARY KEY autoincrement, id_usuario INTEGER NULL, nombre VARCHAR(50) NULL, apellido VARCHAR(50) NULL, imagen BLOB NULL, email VARCHAR(50) NULL,FOREIGN KEY(id_usuario) REFERENCES users(id) on delete cascade on update cascade);";
 
   //variable para el insert de la tabla
   RolP: string = "INSERT or IGNORE INTO rol(id_rol,nombre_rol) VALUES (1,'Profesor');";
@@ -83,7 +83,7 @@ export class DbService {
       await this.database.executeSql(this.Rol,[]);
       await this.database.executeSql(this.RolP,[]);
       await this.database.executeSql(this.RolE,[]);
-      await this.database.executeSql(this.User,[]);
+      await this.database.executeSql(this.Users,[]);
       await this.database.executeSql(this.Perfiles,[]);
       await this.database.executeSql(this.Ramo,[]);
       await this.database.executeSql(this.Seccion,[]);
@@ -320,7 +320,7 @@ ingreso2(nombre,clave){
         }
       }
       //actualizo el observable
-      this.listaListados.next(items);
+      this.listaSecciones.next(items);
 
     })
   }
@@ -438,7 +438,8 @@ ingreso2(nombre,clave){
         localStorage.setItem('perfiles', id_perfil_usuario)
 
         return true;
-      }else{
+      }
+      else{
         return false;
     }
 

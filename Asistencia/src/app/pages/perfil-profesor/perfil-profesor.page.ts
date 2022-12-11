@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavigationExtras, Router } from '@angular/router';
 import { NativeStorage } from '@awesome-cordova-plugins/native-storage/ngx';
 import { MenuController } from '@ionic/angular';
 import { DbService } from 'src/app/services/db.service';
@@ -10,7 +11,6 @@ import { TomarFotoService } from 'src/app/services/tomar-foto.service';
   styleUrls: ['./perfil-profesor.page.scss'],
 })
 export class PerfilProfesorPage implements OnInit {
-
 
   perfiles: any = {
     nombre:'',
@@ -31,7 +31,7 @@ export class PerfilProfesorPage implements OnInit {
   nombrea: any;
   apellido: any;
   imagen: any;
-  correo: any;
+  email: any;
   token: any;
 
   imageData: any;
@@ -39,7 +39,7 @@ export class PerfilProfesorPage implements OnInit {
   users: any;
 
 
-  constructor(private menu: MenuController, private c:TomarFotoService, public nativeStorage: NativeStorage, private servicio: DbService) {
+  constructor(private menu: MenuController, private c:TomarFotoService, public nativeStorage: NativeStorage, private servicio: DbService, private router: Router) {
 
     this.menu.enable(true);}
 
@@ -47,15 +47,21 @@ export class PerfilProfesorPage implements OnInit {
       this.c.takePicture();
     }
 
-    VistaUsuario() {  
-      this.servicio.buscarUsuarios
+
+  enviarDatos(){
+    let navigationExtras: NavigationExtras = {
+      state: {
+        idE: this.id,
+        nombreE: this.nombre,
+        rolE: this.id_rol
+      }
     }
+    this.servicio.Perfilusuario(this.id);
+    this.router.navigate(['/perfil-a'], navigationExtras);
+  }
 
 
   ngOnInit() {
-    this.c.regresarfoto().subscribe((res) => {
-      this.imageData = res;
-    })
     this.servicio.dbState().subscribe((res) => {
       if (res) {
         this.servicio.fetchUsuario().subscribe(async item => {

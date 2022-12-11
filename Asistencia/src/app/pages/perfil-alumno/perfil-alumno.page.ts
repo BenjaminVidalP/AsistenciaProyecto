@@ -13,11 +13,7 @@ import { TomarFotoService } from 'src/app/services/tomar-foto.service';
 export class PerfilAlumnoPage implements OnInit {
 
 
-  perfiles: any = {
-    nombre:'',
-    apellido:'',
-    email:''
-  };
+
   usuario: any[] = [];
   id: number;
   id_pe: number;
@@ -26,7 +22,7 @@ export class PerfilAlumnoPage implements OnInit {
   clave: any;
   id_rol: number;
 
-  perfil: any[] = [];
+
   id_perfil_usuario: number;
   id_usuario: number;
   nombrea: any;
@@ -63,9 +59,6 @@ export class PerfilAlumnoPage implements OnInit {
 
 
   ngOnInit() {
-    this.c.regresarfoto().subscribe((res) => {
-      this.imageData = res;
-    })
     this.servicio.dbState().subscribe((res) => {
       if (res) {
         this.servicio.fetchUsuario().subscribe(async item => {

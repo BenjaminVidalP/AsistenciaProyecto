@@ -4,7 +4,6 @@
     <ion-buttons slot="start" class="conteiner--btn">
       <ion-menu-button color="dark"></ion-menu-button>
     </ion-buttons>
-    <ion-buttons  slot="end" class="conteiner--btn" (click)="tomarF()">Subir imagen</ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -23,22 +22,22 @@
           <ion-item color="warning">
             
             <ion-label position="floating" >Nombre:</ion-label>
-            <ion-input minlength="4" maxlength="20" type="text" [(ngModel)]="perfiles.nombre"></ion-input>
+            <ion-input minlength="2" maxlength="20" type="text" [(ngModel)]="perfils.nombre"></ion-input>
           </ion-item>
           <ion-item color="warning">
 
             <ion-label position="floating">Apellido:</ion-label>
-            <ion-input minlength="4" maxlength="20" type="text" [(ngModel)]="perfiles.apellido"></ion-input>
+            <ion-input minlength="2" maxlength="20" type="text" [(ngModel)]="perfils.apellido"></ion-input>
           </ion-item>
 
           <ion-item color="warning">
             <ion-label  position="floating" >Correo:</ion-label>
-            <ion-input minlength="2" maxlength="45" type="email" [(ngModel)]="perfiles.email"></ion-input>
+            <ion-input minlength="2" maxlength="45" type="email" [(ngModel)]="perfils.email"></ion-input>
           </ion-item>
     
       </ion-card-content>
     </ion-card>
 
-    <ion-button expand="block" color="warning" (click)="Entrar()">Guardar Cambios</ion-button>
+    <ion-button expand="block" color="warning" (click)="Entrar()" >Guardar Cambios</ion-button>
 
 </ion-content>

@@ -4,7 +4,11 @@
     <ion-buttons slot="start" class="conteiner--btn">
       <ion-menu-button color="dark"></ion-menu-button> 
     </ion-buttons>
-    <ion-buttons slot="end" [routerLink]="['/perfil']">Editar Perfil</ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button color="warning" shape="block" (click)="tomarF()" class="ass">
+        <ion-icon name="camera-outline"></ion-icon>
+    </ion-button>
+  </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -17,7 +21,7 @@
     </div>
   </ion-grid>
 
-  <ion-row color="warning">
+  <ion-row color="warning" class="ion-padding-horizontal">
     <ion-col size="12">
       <ion-item lines="none" align="center">
         <ion-label><p>Informatica</p></ion-label>
@@ -28,23 +32,23 @@
   <ion-list>
     <ion-item color="warning">
       <ion-label>
-        <ion-text >Nombre:</ion-text>
+        <ion-text >Usuario:</ion-text>
         <p><ion-text>{{nombre_pe}} </ion-text></p>
-        <ion-icon (click)="enviarDatos()" slot="end" name="create"></ion-icon>
+      </ion-label>
+      <ion-icon (click)="enviarDatos()" slot="end" name="create"></ion-icon>
+    </ion-item>
+
+    <ion-item color="warning">
+      <ion-label>
+        <ion-text >Nombre:</ion-text>
+        <p><ion-text>{{nombre}} {{apellido}} </ion-text></p>
       </ion-label>
     </ion-item>
 
     <ion-item color="warning">
       <ion-label>
         <ion-text >Email:</ion-text>
-        <p><ion-text>{{nombre}} </ion-text></p>
-      </ion-label>
-
-    </ion-item >
-    <ion-item color="warning">
-      <ion-label>
-        <ion-text >Correo:</ion-text>
-        <p><ion-text>{{nombre}} </ion-text></p>
+        <p><ion-text>{{email}} </ion-text></p>
       </ion-label>
     </ion-item>
 

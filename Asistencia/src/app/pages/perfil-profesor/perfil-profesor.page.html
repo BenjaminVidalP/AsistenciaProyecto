@@ -4,7 +4,7 @@
     <ion-buttons slot="start" class="conteiner--btn">
       <ion-menu-button color="dark"></ion-menu-button> 
     </ion-buttons>
-    <ion-buttons slot="end" [routerLink]="['/perfil-p']">Perfil</ion-buttons>
+    <ion-buttons slot="end" (click)="enviarDatos()" >Perfil</ion-buttons>
   </ion-toolbar>
 </ion-header>
 
