@@ -72,7 +72,7 @@ export class PerfilProfesorPage implements OnInit {
       console.log("Hola " + this.token)
       for (let i = 0; i < this.usuario.length; i++) {
       if(this.usuario[i].nombre == this.token ){
-        this.id = this.usuario[i].id_usuario
+        this.id = this.usuario[i].id
         this.nombre = this.usuario[i].nombre
         this.clave = this.usuario[i].clave
         this.id_rol = this.usuario[i].id_rol

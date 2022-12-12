@@ -446,7 +446,5 @@ ingreso2(nombre,clave){
     })
   }
 
-  
-  
 }
 
