@@ -48,12 +48,12 @@ export class PerfilAlumnoPage implements OnInit {
   enviarDatos(){
     let navigationExtras: NavigationExtras = {
       state: {
-        idE: this.id,
+        idEnviado: this.id,
         nombreE: this.nombre,
         rolE: this.id_rol
       }
     }
-    this.servicio.Perfilusuario(this.id);
+    console.log(this.id)
     this.router.navigate(['/perfil-a'], navigationExtras);
   }
 

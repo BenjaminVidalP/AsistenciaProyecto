@@ -42,7 +42,8 @@ export class PerfilPage implements OnInit {
     this.activedRouter.queryParams.subscribe(param =>{
       if(this.router.getCurrentNavigation().extras.state){
         this.id_pe = this.router.getCurrentNavigation().extras.state.id_perfilE;
-        this.id_rol = this.router.getCurrentNavigation().extras.state.id_rolE;
+        this.id_rol = this.router.getCurrentNavigation().extras.state.id_rolEs;
+        console.log("id_perfil_pag",this.id_pe)
       }
     })
 
@@ -57,25 +58,6 @@ async Entrar(){
       emailE: this.id_rol
     }
   }
-
-  this.servicio.dbState().subscribe((res) => {
-    if (res) {
-      this.servicio.fetchPerfiles().subscribe(async item => {
-        this.perfiles = item;
-      })
-    }
-    this.token=localStorage.getItem('perfiles')
-    console.log("Hola " + this.token)
-    for (let i = 0; i < this.perfiles.length; i++) {
-    if(this.perfiles[i].id_perfil_usuario == this.token ){
-      this.id_usuario = this.perfiles[i].id_usuario
-      this.nombrea = this.perfiles[i].nombre
-      this.apellido = this.perfiles[i].apellido
-      this.imagen = this.perfiles[i].imagen
-      this.email = this.perfiles[i].email
-    }
-    }
-  })
   if(this.id_rol == 1) {
     this.router.navigate(['/perfil-profesor'], navigationExtras);
   }

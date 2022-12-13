@@ -435,7 +435,7 @@ ingreso2(nombre,clave){
           })
         }
         //actualizo el observable
-        localStorage.setItem('perfiles', id_perfil_usuario)
+        localStorage.setItem('perfiles',id_perfil_usuario)
 
         return true;
       }

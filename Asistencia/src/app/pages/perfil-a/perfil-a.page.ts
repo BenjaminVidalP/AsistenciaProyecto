@@ -4,6 +4,7 @@ import { NativeStorage } from '@awesome-cordova-plugins/native-storage/ngx';
 import { MenuController } from '@ionic/angular';
 import { DbService } from 'src/app/services/db.service';
 import { TomarFotoService } from 'src/app/services/tomar-foto.service';
+import { Location } from '@angular/common'
 
 @Component({
   selector: 'app-perfil-a',
@@ -30,22 +31,21 @@ export class PerfilAPage implements OnInit {
   users: any;
   token: any;
 
-  constructor(private menu: MenuController, private c:TomarFotoService, public nativeStorage: NativeStorage, private servicio: DbService, private activedRouter: ActivatedRoute, private router: Router) {
+  constructor(private menu: MenuController, private c:TomarFotoService, public nativeStorage: NativeStorage, private servicio: DbService, private activedRouter: ActivatedRoute, private router: Router,private location: Location) {
     this.menu.enable(true);
-    this.activedRouter.queryParams.subscribe(param =>{
+    this.activedRouter.queryParams.subscribe(param=>{
       if(this.router.getCurrentNavigation().extras.state){
-        this.id_pe = this.router.getCurrentNavigation().extras.state.idE;
-        this.nombre_pe = this.router.getCurrentNavigation().extras.state.nombreE;
-        this.id_rol = this.router.getCurrentNavigation().extras.state.rolE;
-        console.log(this.id_pe)
+        this.id_pe = this.router.getCurrentNavigation().extras.state.idEnviado;
+        this.id_rol = this.router.getCurrentNavigation().extras.state.nombreE;
       }
     })
-    }
+  }
+
     enviarDatos(){
       let navigationExtras: NavigationExtras = {
         state: {
           id_perfilE: this.id_pe,
-          id_rolE: this.id_rol
+          id_rolEs: this.id_rol
         }
       }
       this.router.navigate(['/perfil'], navigationExtras);

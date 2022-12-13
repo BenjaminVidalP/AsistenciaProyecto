@@ -70,6 +70,7 @@ export class InicioSesionPage implements OnInit {
       this.user = user2;
       for(var i = 0; i < this.user.length; i++){
         this.servicio.insertarUsuarios(this.user[i].id,this.user[i].nombre,this.user[i].clave,this.user[i].id_rol);
+        this.servicio.actualizarIdPerfil(this.user[i].id,this.user[i].id);
         }
       },(error)=>{
       console.log(error);
